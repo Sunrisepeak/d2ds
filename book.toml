@@ -1,0 +1,6 @@
+[book]
+authors = ["SPeak"]
+language = "en"
+multilingual = false
+src = "src"
+title = "动手写数据结构(d2ds)"
