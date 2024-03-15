@@ -20,6 +20,7 @@ xmake dslings
 
 ### 正确提示
 
+```text
 🌏Progress: [=>--] 1/3
 
 [Target: 0.d2ds]
@@ -35,6 +36,7 @@ Hello D2DS
 ====================
 
 Book: https://sunrisepeak.github.io/d2ds
+```
 
 ### 错误提示
 
