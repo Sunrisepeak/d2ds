@@ -43,7 +43,7 @@ error: tests/d2ds.cpp:8:5: error: ‘vaL’ was not declared in this scope; did 
 
 Book: https://sunrisepeak.github.io/d2ds
 
-```text
+```
 
 ---
 
