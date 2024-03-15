@@ -5,8 +5,7 @@
 
 namespace d2ds {
 
-template<typename T, size_t N>
-using Array = dstruct::Array<T, N>;
+//using dstruct::Array;
 
 }
 

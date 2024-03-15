@@ -18,7 +18,25 @@ xmake dslings
 
 ```
 
-### 状态信息及错误提示
+### 正确提示
+
+🌏Progress: [=>--] 1/3
+
+[Target: 0.d2ds]
+
+✅ Successfully ran tests/d2ds.cpp!
+
+🎉   The code is compiling!   🎉
+
+Output:
+====================
+Hello D2DS
+
+====================
+
+Book: https://sunrisepeak.github.io/d2ds
+
+### 错误提示
 
 ```text
 🌏Progress: [>---] 0/3

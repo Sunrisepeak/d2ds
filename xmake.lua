@@ -142,14 +142,16 @@ task("dslings")
                         }
                     end
 
+                    if build_success then
+                        built_targets = built_targets + 1
+                    end
+
                     print_info(name, built_targets, total_targets, relative_path, output, build_success)
                     output = ""
                     os.sleep(sleep_sec)
 
                 end
             end
-
-            built_targets = built_targets + 1
         end
 
         local bingo = "\
