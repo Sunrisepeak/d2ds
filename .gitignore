@@ -1,1 +1,4 @@
 book
+.vscode
+.xmake
+build
