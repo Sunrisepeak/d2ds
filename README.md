@@ -20,6 +20,7 @@ xmake dslings
 
 ### 状态信息及错误提示
 
+```text
 🌏Progress: [>---] 0/3
 
 [Target: 0.d2ds]
@@ -42,8 +43,8 @@ error: tests/d2ds.cpp:8:5: error: ‘vaL’ was not declared in this scope; did 
 
 Book: https://sunrisepeak.github.io/d2ds
 
+```text
 
 ---
 
-[开源课程]()
-[DStruct开源库]()
+[开源课程]() | [DStruct开源库]()
