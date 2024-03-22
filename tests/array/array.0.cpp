@@ -1,3 +1,5 @@
+#include <tests/common.hpp>
+
 #include <exercises/array/Array.hpp>
 
 int main() {

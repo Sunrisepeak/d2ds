@@ -1,7 +1,7 @@
 #ifndef __ARRAY_HPP__D2DS
 #define __ARRAY_HPP__D2DS
 
-#include <DStruct/dstruct.hpp>
+//#include <DStruct/dstruct.hpp>
 
 namespace d2ds {
 

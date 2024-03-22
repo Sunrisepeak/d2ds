@@ -6,9 +6,17 @@ add_includedirs(".")
 -- verify lib
 add_includedirs("DStruct")
 
-target("0.d2ds")
+target("0.dslings-0")
     set_kind("binary")
-    add_files("tests/d2ds.cpp")
+    add_files("tests/dslings.0.cpp")
+
+target("0.dslings-1")
+    set_kind("binary")
+    add_files("tests/dslings.1.cpp")
+
+target("0.dslings-2")
+    set_kind("binary")
+    add_files("tests/dslings.2.cpp")
 
 target("1.array-0")
     set_kind("binary")
