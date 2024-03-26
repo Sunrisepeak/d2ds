@@ -1,12 +1,80 @@
-# 动手写数据结构(d2ds)
+# 导读
 
-强调**动手实践**的数据结构开源[书 + 代码]
+动手写数据结构(d2ds)是一本强调动手实践的开源电子书, 每一章节都会介绍一个数据结构的基本用法和对应的具体实现。本书使用C++作为数据结构的开发语言, 并使用"编译器驱动开发模式"面向接口编程的形式, 来介绍常见数据结构的主体功能和实现。同时, 在[d2ds仓库](https://github.com/Sunrisepeak/d2ds)中也为每章节配有对应的练习代码和dslings检测程序, 真正让读者感受到"动手写"的感觉。下面我们就来详细的介绍一下 章节结构 和 dslings的使用。
 
-## 文档/书籍
+> 注: 练习代码采用了类似rustlings的代码检测风格
 
-[在线阅读](https://sunrisepeak.github.io/d2ds/)
 
-## 代码练习
+## 章节结构
+
+核心分两大部分, **数据结构接口使用 + 数据结构接口实现**。如下:
+
+### 数据结构接口使用
+
+#### 代码示例
+```cpp
+int main() {
+    d2ds:MyType myType;
+    myType.push(1);
+    assert(myType.size() == 1);
+    myType.pop();
+    return 0;
+}
+```
+
+#### 接口描述
+
+- MyType: 需要有默认构造
+- push: 放置一个int值到数据结构
+- size: 获得当前大小
+- pop: 删除最新放置的数据
+
+
+### 数据结构接口实现
+
+根据代码示例和接口描述来实现这个数据结构
+
+#### 类型定义
+
+```cpp
+struct MyType {
+    // ...
+};
+```
+
+#### push接口实现
+
+```cpp
+struct MyType {
+    void push(int val) {
+        // ...
+    }
+};
+```
+
+#### size接口实现
+
+```cpp
+struct MyType {
+    // ...
+    void size() {
+        //...
+    }
+};
+```
+
+#### pop接口实现
+
+```cpp
+struct MyType {
+    // ...
+    void pop() {
+        //...
+    }
+};
+```
+
+## 代码练习dslings
 
 用dslings的**编译器驱动开发模式**来进行代码练习
 
@@ -111,6 +179,6 @@ Book: https://sunrisepeak.github.io/d2ds
 
 ```
 
----
+## 总结
 
-[开源课程](https://github.com/Sunrisepeak/d2ds-courses) | [DStruct开源库](https://github.com/Sunrisepeak/DStruct)
+好的, 到这里你应该已经了解了本书的叙述逻辑和结构 - **[数据结构使用 + 数据结构实现 + 对应代码练习]**。但该项目现任处于持续构建中(WIP), 依然存在相当多的问题。如果你在这个过程中你发现了一些项目的问题或自己遇到了一些问题, 欢迎到[d2ds讨论区](https://github.com/Sunrisepeak/d2ds-courses/discussions)反馈和交流。那么下面可以开始你的**动手写数据结构**之旅了...
