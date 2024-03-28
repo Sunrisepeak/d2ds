@@ -147,6 +147,20 @@ private:
 
 用dslings的**编译器驱动开发模式**来进行代码练习
 
+### 代码下载
+
+```bash
+git clone --recursive git@github.com:Sunrisepeak/d2ds.git
+```
+
+### 安装xmake
+
+```bash
+sudo add-apt-repository ppa:xmake-io/xmake
+sudo apt-get update
+sudo apt-get install g++ gdb xmake make -y
+```
+
 ### dslings自动检测
 
 在本地[d2ds仓库](https://github.com/Sunrisepeak/d2ds)的根目录执行如下命令
