@@ -8,27 +8,28 @@ namespace d2ds {
 
 
 
-
+/*
 class MaxValue {
 public:
     MaxValue(int val) {
-        __mVal = val;
+        __mMaxVal = val;
     }
 
     int get() {
-        return __mVal;
+        return __mMaxVal;
     }
 
     void set(int val) {
-        if (val > __mVal)
-            __mVal = val;
+        if (val > __mMaxVal) {
+            __mMaxVal = val;
+        }
     }
 
 private:
-    int __mVal;
+    int __mMaxVal;
 };
 
-
+*/
 
 }
 

@@ -12,6 +12,7 @@
 //
 
 #include <tests/common.hpp>
+#include <chrono>
 
 #include <exercises/dslings.hpp>
 
@@ -19,31 +20,28 @@ int main() {
 
     d2ds::MaxValue mVal(2);
 
-    assert(mVal.get() == 2);
+    d2ds_assert_eq(mVal.get(), 2);
 
     mVal.set(-1);
-    assert(mVal.get() == 2);
+    d2ds_assert_eq(mVal.get(), 2);
 
     mVal.set(100);
-    assert(mVal.get() == 100);
+    d2ds_assert_eq(mVal.get(), 100);
 
 // random test
-    std::random_device rd;
-    std::mt19937 gen(rd());  // 使用随机设备作为种子
-    std::uniform_int_distribution<int> dis(0, 200);  // 定义范围为 [0, 200] 的均匀分布
+    dstruct::Array<int, 10> data;
+    d2ds::randomDataGenerator(data, 0, 200);
+    d2ds::ds_print(data);
 
-    int currMaxVal = mVal.get();
-    for (int i = 0; i < 10; i++) {
-        int randomNum = dis(gen);
-        int newMaxVal = currMaxVal > randomNum ? currMaxVal : randomNum;
-        mVal.set(randomNum);
-        assert(mVal.get() == newMaxVal);
-        currMaxVal = mVal.get();
+    int maxVal = 0;
+    for (int i = 0; i < data.size(); i++) {
+        mVal.set(data[i]);
+        if (data[i] > maxVal) {
+            maxVal = data[i];
+        }
     }
 
-    std::cout << "hello, dslings..." << std::endl;
-
-    DeleteTheAssertToContinue();
+    d2ds_assert_eq(mVal.get(), maxVal);
 
     return 0;
 }

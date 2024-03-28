@@ -137,7 +137,7 @@ task("dslings")
                     if build_success then
                         try {
                             function () 
-                                output, errs = os.iorunv("xmake", {"r", name})
+                                os.iorunv("xmake", {"r", name})
                             end,
                             catch
                             {

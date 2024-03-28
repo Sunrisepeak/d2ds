@@ -19,13 +19,13 @@ int main() {
 
     d2ds::MaxValue mVal(2);
 
-    assert(mVal.get() == 2);
+    d2ds_assert_eq(mVal.get(), 2);
 
     mVal.set(-1);
-    assert(mVal.get() == 2);
+    d2ds_assert_eq(mVal.get(), 2);
 
     mVal.set(100);
-    assert(mVal.get() == 100);
+    d2ds_assert_eq(mVal.get(), 100);
 
     return 0;
 }

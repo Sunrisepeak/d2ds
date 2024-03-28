@@ -48,7 +48,7 @@ In file included from /usr/include/c++/11/cassert:44,
                  from ./tests/common.hpp:6,
                  from tests/dslings.0.cpp:14:
 tests/dslings.0.cpp:22:12: error: ‘mVal’ was not declared in this scope
-   22 |     assert(mVal.get() == 2);
+   22 |     d2ds_assert_eq(mVal.get(), 2);
       |            ^~~~
   > in tests/dslings.0.cpp
 
@@ -83,7 +83,7 @@ int main() {
 
     d2ds::MaxValue mVal(2);
 
-    assert(mVal.get() == 2);
+    d2ds_assert_eq(mVal.get(), 2);
 
     return 0;
 }

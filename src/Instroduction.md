@@ -13,22 +13,89 @@
 
 #### 代码示例
 ```cpp
+#include <tests/common.hpp>
+#include <chrono>
+
+#include <exercises/dslings.hpp>
+
 int main() {
-    d2ds:MyType myType;
-    myType.push(1);
-    assert(myType.size() == 1);
-    myType.pop();
+
+    d2ds::MaxValue mVal(2);
+
+    d2ds_assert_eq(mVal.get(), 2);
+
+    mVal.set(-1);
+    d2ds_assert_eq(mVal.get(), 2);
+
+    mVal.set(100);
+    d2ds_assert_eq(mVal.get(), 100);
+
+// random test
+    dstruct::Array<int, 10> data;
+    d2ds::randomDataGenerator(data, 0, 200);
+    d2ds::ds_print(data);
+
+    int maxVal = 0;
+    for (int i = 0; i < data.size(); i++) {
+        mVal.set(data[i]);
+        if (data[i] > maxVal) {
+            maxVal = data[i];
+        }
+    }
+
+    d2ds_assert_eq(mVal.get(), maxVal);
+
     return 0;
 }
 ```
 
-#### 接口描述
+#### 代码介绍/描述
 
-- MyType: 需要有默认构造
-- push: 放置一个int值到数据结构
-- size: 获得当前大小
-- pop: 删除最新放置的数据
+MaxValue一个最大值数据检查器
 
+**MaxValue**构造函数设置默认值
+
+```cpp
+    d2ds::MaxValue mVal(2);
+```
+
+**get函数获取当前最大值**
+
+```cpp
+    d2ds_assert_eq(mVal.get(), 2);
+```
+
+**set函数设置一个值**
+
+> 如果当前最大值小于这个值则需要进行替换
+
+```cpp
+    mVal.set(-1);
+    d2ds_assert_eq(mVal.get(), 2);
+
+    mVal.set(100);
+    d2ds_assert_eq(mVal.get(), 100);
+```
+
+**MaxVal的应用测试 - 获取最大数组中最大值**
+
+```cpp
+// random test
+    dstruct::Array<int, 10> data;
+    d2ds::randomDataGenerator(data, 0, 200);
+    d2ds::ds_print(data);
+
+    int maxVal = 0;
+    for (int i = 0; i < data.size(); i++) {
+        mVal.set(data[i]);
+        if (data[i] > maxVal) {
+            maxVal = data[i];
+        }
+    }
+
+    d2ds_assert_eq(mVal.get(), maxVal);
+
+```
 
 ### 数据结构接口实现
 
@@ -37,40 +104,44 @@ int main() {
 #### 类型定义
 
 ```cpp
-struct MyType {
-    // ...
+class MaxValue {
+public:
+    MaxValue(int val) : __mMaxVal { val } { }
+
+private:
+    int __mMaxVal;
 };
 ```
 
-#### push接口实现
+#### get接口实现
 
 ```cpp
-struct MyType {
-    void push(int val) {
-        // ...
+class MaxValue {
+public:
+    //...
+    int get() {
+        return __mMaxVal;
     }
+
+private:
+    int __mMaxVal;
 };
 ```
 
-#### size接口实现
+#### set接口实现
 
 ```cpp
-struct MyType {
-    // ...
-    void size() {
-        //...
+class MaxValue {
+public:
+    //...
+    void set(int val) {
+        if (val > __mMaxVal) {
+            __mMaxVal = val;
+        }
     }
-};
-```
 
-#### pop接口实现
-
-```cpp
-struct MyType {
-    // ...
-    void pop() {
-        //...
-    }
+private:
+    int __mMaxVal;
 };
 ```
 
@@ -116,7 +187,7 @@ In file included from /usr/include/c++/11/cassert:44,
                  from ./tests/common.hpp:6,
                  from tests/dslings.0.cpp:14:
 tests/dslings.0.cpp:22:12: error: ‘mVal’ was not declared in this scope
-   22 |     assert(mVal.get() == 2);
+   22 |     d2ds_assert_eq(mVal.get(), 2);
       |            ^~~~
   > in tests/dslings.0.cpp
 
@@ -151,7 +222,7 @@ int main() {
 
     d2ds::MaxValue mVal(2);
 
-    assert(mVal.get() == 2);
+    d2ds_assert_eq(mVal.get(), 2);
 
     return 0;
 }

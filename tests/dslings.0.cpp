@@ -19,7 +19,7 @@ int main() {
 
     d2ds::MaxValue mVal(2);
 
-    assert(mVal.get() == 2);
+    d2ds_assert_eq(mVal.get(), 2);
 
     return 0;
 }
