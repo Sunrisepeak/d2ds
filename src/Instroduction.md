@@ -14,8 +14,6 @@
 #### 代码示例
 ```cpp
 #include <tests/common.hpp>
-#include <chrono>
-
 #include <exercises/dslings.hpp>
 
 int main() {
@@ -51,9 +49,9 @@ int main() {
 
 #### 代码介绍/描述
 
-MaxValue一个最大值数据检查器
+MaxValue一个数据最大值检查器
 
-**MaxValue**构造函数设置默认值
+**MaxValue构造函数设置默认值**
 
 ```cpp
     d2ds::MaxValue mVal(2);

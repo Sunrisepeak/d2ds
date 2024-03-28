@@ -12,8 +12,6 @@
 //
 
 #include <tests/common.hpp>
-#include <chrono>
-
 #include <exercises/dslings.hpp>
 
 int main() {
