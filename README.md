@@ -24,6 +24,8 @@ sudo apt-get update
 sudo apt-get install g++ gdb xmake make -y
 ```
 
+> 注: 其他系统xmake安装见[xmake仓库](https://github.com/xmake-io/xmake)
+
 ### dslings自动检测
 
 在本地[d2ds仓库](https://github.com/Sunrisepeak/d2ds)的根目录执行如下命令
