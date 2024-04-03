@@ -13,8 +13,8 @@
 
 #### 代码示例
 ```cpp
-#include <tests/common.hpp>
-#include <exercises/dslings.hpp>
+#include "common/common.hpp"
+#include "exercises/dslings.hpp"
 
 int main() {
 
@@ -226,9 +226,9 @@ Book: https://sunrisepeak.github.io/d2ds
 //  - 通过所有编译器检测 和 断言
 //
 
-#include <tests/common.hpp>
+#include "common/common.hpp"
 
-#include <exercises/dslings.hpp>
+#include "exercises/dslings.hpp"
 
 int main() {
 

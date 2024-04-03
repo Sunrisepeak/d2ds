@@ -1,4 +1,4 @@
-#include <tests/common.hpp>
+#include "common/common.hpp"
 
 #include <exercises/array/Array.hpp>
 

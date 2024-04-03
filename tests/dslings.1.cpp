@@ -11,9 +11,9 @@
 //  - 通过所有编译器检测 和 断言
 //
 
-#include <tests/common.hpp>
+#include "common/common.hpp"
 
-#include <exercises/dslings.hpp>
+#include "exercises/dslings.hpp"
 
 int main() {
 

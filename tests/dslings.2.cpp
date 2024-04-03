@@ -11,8 +11,10 @@
 //  - 通过所有编译器检测 和 断言
 //
 
-#include <tests/common.hpp>
-#include <exercises/dslings.hpp>
+#include <dstruct.hpp>
+
+#include "common/common.hpp"
+#include "exercises/dslings.hpp"
 
 int main() {
 
@@ -40,6 +42,8 @@ int main() {
     }
 
     d2ds_assert_eq(mVal.get(), maxVal);
+
+    //D2DS_WAIT
 
     return 0;
 }

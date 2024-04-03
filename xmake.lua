@@ -18,11 +18,31 @@ target("0.dslings-2")
     set_kind("binary")
     add_files("tests/dslings.2.cpp")
 
-target("1.array-0")
+target("1.template-0")
+    set_kind("binary")
+    add_files("tests/other/cpp-base/template.0.cpp")
+
+target("1.template-1")
+    set_kind("binary")
+    add_files("tests/other/cpp-base/template.1.cpp")
+
+target("1.template-2")
+    set_kind("binary")
+    add_files("tests/other/cpp-base/template.2.cpp")
+
+target("2.range_for-0")
+    set_kind("binary")
+    add_files("tests/other/cpp-base/range_for.0.cpp")
+
+target("2.range_for-1")
+    set_kind("binary")
+    add_files("tests/other/cpp-base/range_for.1.cpp")
+
+target("3.array-0")
     set_kind("binary")
     add_files("tests/array/array.0.cpp")
 
-target("1.array-1")
+target("3.array-1")
     set_kind("binary")
     add_files("tests/array/array.1.cpp")
 
@@ -32,6 +52,17 @@ task("dslings")
         import("core.project.project")
         import("core.project.target")
         import("core.base.global")
+
+        local checker_pass = false
+
+        local dslings_checker_pass_config = {
+            ["0.dslings-0"] = checker_pass,
+            ["0.dslings-1"] = checker_pass,
+            ["0.dslings-2"] = checker_pass,
+            ["1.template-0"] = checker_pass,
+            ["1.template-1"] = checker_pass,
+            ["1.template-2"] = checker_pass,
+        }
 
         local function get_len(pairs_type)
             length = 0
@@ -49,7 +80,7 @@ task("dslings")
             end
         end
 
-        local function print_info(target_name, built_targets, total_targets, current_file_path, output, success)
+        local function print_info(target_name, built_targets, total_targets, current_file_path, output, status)
 
             clear_screen()
 
@@ -68,7 +99,7 @@ task("dslings")
             print(string.format("\n[Target: %s]\n", target_name))
 
             -- print status
-            if success then
+            if status then
                 print(string.format("✅ Successfully ran %s!", current_file_path))
                 print("\n🎉   The code is compiling!   🎉\n")
             else
@@ -129,7 +160,6 @@ task("dslings")
                             function (e)
                                 output = e
                                 build_success = false
-                                sleep_sec = 1000 * 3
                             end
                         }
                     }
@@ -137,24 +167,40 @@ task("dslings")
                     if build_success then
                         try {
                             function () 
-                                os.iorunv("xmake", {"r", name})
+                                output, _ = os.iorunv("xmake", {"r", name})
                             end,
                             catch
                             {
                                 function (e)
                                     output = e
                                     build_success = false
-                                    sleep_sec = 1000 * 3
                                 end
                             }
                         }
                     end
 
-                    if build_success then
-                        built_targets = built_targets + 1
+                    local status = build_success
+
+                    if dslings_checker_pass_config[name] == true then
+                        build_success = true
+                    else
+                        if type(output) == "string" then
+                            if string.find(output, "❌") then
+                                status = false
+                                build_success = false
+                            elseif string.find(output, "D2DS_WAIT") then
+                                build_success = false
+                            end
+                        end
                     end
 
-                    print_info(name, built_targets, total_targets, relative_path, output, build_success)
+                    if build_success then
+                        built_targets = built_targets + 1
+                    else
+                        sleep_sec = 1000 * 2
+                    end
+
+                    print_info(name, built_targets, total_targets, relative_path, output, status)
                     output = ""
                     os.sleep(sleep_sec)
 

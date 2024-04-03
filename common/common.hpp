@@ -2,16 +2,34 @@
 #define __COMMON_HPP__D2DS
 
 #include <iostream>
+#include <string>
 #include <random>
 #include <cassert>
 #include <thread>
 
-#include <dstruct.hpp>
+#define HONLY_LOGGER_TAG "D2DS"
+#include "common/honly_logger.hpp"
+#include "common/dslings_config.hpp"
+
+
+#define d2ds_assert(expr) \
+    if (!(expr)) { \
+        HONLY_LOGW("❌ | %s", #expr); \
+    } else { \
+        HONLY_LOGI("✅ | %s", #expr); \
+    }
 
 #define d2ds_assert_eq(a, b) \
-if (a != b) \
-    std::cerr << #a << " == " << #b << " (" << a << " == " << b << ")" << std::endl; \
-assert((a) == (b))
+    if (a != b) {\
+        HONLY_LOGW("❌ | %s == %s (%s == %s)", \
+            #a, #b, std::to_string(a).c_str(), std::to_string(b).c_str()); \
+    } else {\
+        HONLY_LOGI("✅ | %s == %s (%s == %s)", \
+            #a, #b, std::to_string(a).c_str(), std::to_string(b).c_str()); \
+    }
+
+#define D2DS_WAIT HONLY_LOGW("Delete the D2DS_WAIT to continue...");
+
 
 namespace d2ds {
 
