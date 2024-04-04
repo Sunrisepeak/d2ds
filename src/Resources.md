@@ -51,3 +51,11 @@
 [d2ds - issues | task](https://github.com/Sunrisepeak/d2ds/issues)
 
 [d2ds-courses - issues | task](https://github.com/Sunrisepeak/d2ds-courses/issues)
+
+#### 其他
+
+---
+
+[show-your-code-2024](https://github.com/Sunrisepeak/d2ds-courses/tree/show-your-code-2024)
+
+[DStruct 数据结构模板库](https://github.com/Sunrisepeak/DStruct)
