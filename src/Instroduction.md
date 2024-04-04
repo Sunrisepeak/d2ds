@@ -1,3 +1,27 @@
+**预览**
+
+---
+
+- 基本介绍
+- 章节结构
+  - 数据结构接口使用 | 代码演示
+    - dslings - 测试代码
+    - dslings - 检测结果
+    - 代码接口介绍
+  - 数据结构接口实现 | 类型定义
+  - 数据结构接口实现 | 接口实现
+  - 数据结构接口实现 | 完整代码
+- 代码练习dslings
+  - 代码下载
+  - 安装xmake
+  - dslings自动检测
+    - 错误提示
+    - 代码通过提示
+    - D2DS_WAIT - dslings等待标志
+- 总结
+
+---
+
 # 导读
 
 动手写数据结构(d2ds)是一本强调动手实践的开源电子书, 每一章节都会介绍一个数据结构的基本用法和对应的具体实现。本书使用C++作为数据结构的开发语言, 并使用"编译器驱动开发模式"面向接口编程的形式, 来介绍常见数据结构的主体功能和实现。同时, 在[d2ds仓库](https://github.com/Sunrisepeak/d2ds)中也为每章节配有对应的练习代码和dslings检测程序, 真正让读者感受到"动手写"的感觉。下面我们就来详细的介绍一下 章节结构 和 dslings的使用。
@@ -11,8 +35,24 @@
 
 ### 数据结构接口使用
 
-#### 代码示例
+**dslings - MaxValue代码示例**
+
 ```cpp
+// dslings.2.cpp - readonly
+//
+// 描述:
+//  通过实现一个MaxVal类型(保存最大值), 来介绍dslings的"编译器驱动开发"
+//  即根据编译器的错误提示来完成这个训练流程的演示Demo, 并且通常为了降低难度会把一个'数据结构'的实现分成多个检测模块.
+//  如: dslings.0.cpp dslings.1.cpp dslings.2.cpp
+//
+// 目标/要求:
+//  - 不修改该代码检测文件
+//  - 在exercises/dslings.hpp中完成你的代码设计
+//  - 通过所有编译器检测 和 断言
+//
+
+#include <dstruct.hpp>
+
 #include "common/common.hpp"
 #include "exercises/dslings.hpp"
 
@@ -43,27 +83,53 @@ int main() {
 
     d2ds_assert_eq(mVal.get(), maxVal);
 
+    D2DS_WAIT
+
     return 0;
 }
 ```
 
-#### 代码介绍/描述
+**dslings - 检测结果**
+
+```bash
+🌏Progress: [==>----------] 2/12
+
+[Target: 0.dslings-2]
+
+✅ Successfully ran tests/dslings.2.cpp!
+
+🎉   The code is compiling!   🎉
+
+Output:
+====================
+[D2DS LOGI]: - ✅ | mVal.get() == 2 (2 == 2)
+[D2DS LOGI]: - ✅ | mVal.get() == 2 (2 == 2)
+[D2DS LOGI]: - ✅ | mVal.get() == 100 (100 == 100)
+[D2DS LOGI]: - ✅ | mVal.get() == maxVal (191 == 191)
+[D2DS LOGW]:    main: tests/dslings.2.cpp:46 - Delete the D2DS_WAIT to continue...
+
+====================
+
+Book: https://sunrisepeak.github.io/d2ds
+```
+
+**代码接口介绍**
 
 MaxValue一个数据最大值检查器
 
-**MaxValue构造函数设置默认值**
+MaxValue构造函数设置默认值
 
 ```cpp
     d2ds::MaxValue mVal(2);
 ```
 
-**get函数获取当前最大值**
+get函数获取当前最大值
 
 ```cpp
     d2ds_assert_eq(mVal.get(), 2);
 ```
 
-**set函数设置一个值**
+set函数设置一个值
 
 > 如果当前最大值小于这个值则需要进行替换
 
@@ -75,7 +141,7 @@ MaxValue一个数据最大值检查器
     d2ds_assert_eq(mVal.get(), 100);
 ```
 
-**MaxVal的应用测试 - 获取最大数组中最大值**
+MaxVal的应用测试 - 获取最大数组中最大值
 
 ```cpp
 // random test
@@ -178,7 +244,7 @@ xmake dslings
 > - 强烈建议使用vscode作为代码练习的编辑器, 这样dslings在控制台给出的练习代码路径, 只需要用**ctrl+鼠标左键**点击就可以自动转跳到目标位置
 > 
 
-### 错误提示
+**错误提示**
 
 ```text
 🌏Progress: [>-----] 0/5
@@ -242,7 +308,7 @@ int main() {
 
 根据对应的练习代码中给的描述和要求完成该练习, 过程中可以结合dslings在控制台的提示来进行相关数据结构练习的代码设计。当正确完成代码后, dslings就会更新控制的输出给出对应的提示。
 
-### 代码通过提示
+**代码通过提示**
 
 ```text
 🌏Progress: [=>----] 1/5
@@ -261,6 +327,16 @@ Output:
 Book: https://sunrisepeak.github.io/d2ds
 
 ```
+
+**D2DS_WAIT - dslings等待标志**
+
+当完整完成一个小节的练习的时候, dslings检测程序会进入等待状态, 并且打印出类似如下的提示消息
+
+```bash
+[D2DS LOGW]:    main: tests/dslings.2.cpp:46 - Delete the D2DS_WAIT to continue...
+```
+
+按照消息中给出的文件地址, 选择注释掉(或删除)程序中的`D2DS_WAIT`标志, dslings就会进入下一个练习并开启自动检测
 
 ## 总结
 

@@ -32,11 +32,7 @@ int main() {
         d2ds_assert_eq(d2ds::max(a, b), dstruct::max(a, b));
     }
 
-    int arr[] = {3, 4, 5, 6};
-
-    for (int val : arr) {
-        std::cout << val << std::endl;
-    }
+    D2DS_WAIT
 
     return 0;
 }

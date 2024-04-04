@@ -16,7 +16,7 @@
     if (!(expr)) { \
         HONLY_LOGW("❌ | %s", #expr); \
     } else { \
-        HONLY_LOGI("✅ | %s", #expr); \
+        HONLY_LOGI_P("✅ | %s", #expr); \
     }
 
 #define d2ds_assert_eq(a, b) \
@@ -24,7 +24,7 @@
         HONLY_LOGW("❌ | %s == %s (%s == %s)", \
             #a, #b, std::to_string(a).c_str(), std::to_string(b).c_str()); \
     } else {\
-        HONLY_LOGI("✅ | %s == %s (%s == %s)", \
+        HONLY_LOGI_P("✅ | %s == %s (%s == %s)", \
             #a, #b, std::to_string(a).c_str(), std::to_string(b).c_str()); \
     }
 

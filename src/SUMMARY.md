@@ -2,6 +2,7 @@
 
 # 阅读准备
 - [导读](./Instroduction.md)
+- [资源](./Resources.md)
 
 # 常用数据结构
 - [数组]()
@@ -35,7 +36,7 @@
 - [数据结构基本概念](other/0_ds_base.md)
 - [C++基础](other/1_cpp_base.md)
   - [范型编程](other/1_cpp_base.template.md)
-  - [范围for循环语法糖](other/2_cpp_base.rangefor.md)
+  - [语法糖 | 范围for循环](other/2_cpp_base.rangefor.md)
 - [内存管理]()
 - [设计模式]()
   - [迭代器设计模式]()

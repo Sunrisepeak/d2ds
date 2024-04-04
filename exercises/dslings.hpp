@@ -7,7 +7,7 @@ namespace d2ds {
 
 
 
-
+/*
 class MaxValue {
 public:
     MaxValue(int val) {
@@ -27,6 +27,7 @@ public:
 private:
     int __mMaxVal;
 };
+*/
 
 }
 

@@ -38,6 +38,14 @@ target("2.range_for-1")
     set_kind("binary")
     add_files("tests/other/cpp-base/range_for.1.cpp")
 
+target("2.range_for-2")
+    set_kind("binary")
+    add_files("tests/other/cpp-base/range_for.2.cpp")
+
+target("2.range_for-3")
+    set_kind("binary")
+    add_files("tests/other/cpp-base/range_for.3.cpp")
+
 target("3.array-0")
     set_kind("binary")
     add_files("tests/array/array.0.cpp")
@@ -56,12 +64,16 @@ task("dslings")
         local checker_pass = false
 
         local dslings_checker_pass_config = {
-            ["0.dslings-0"] = checker_pass,
-            ["0.dslings-1"] = checker_pass,
-            ["0.dslings-2"] = checker_pass,
-            ["1.template-0"] = checker_pass,
-            ["1.template-1"] = checker_pass,
-            ["1.template-2"] = checker_pass,
+            ["0.dslings-0"]     = checker_pass,
+            ["0.dslings-1"]     = checker_pass,
+            ["0.dslings-2"]     = checker_pass,
+            ["1.template-0"]    = checker_pass,
+            ["1.template-1"]    = checker_pass,
+            ["1.template-2"]    = checker_pass,
+            ["2.range_for-0"]   = checker_pass,
+            ["2.range_for-1"]   = checker_pass,
+            ["2.range_for-2"]   = checker_pass,
+            ["2.range_for-3"]   = checker_pass,
         }
 
         local function get_len(pairs_type)
@@ -197,7 +209,7 @@ task("dslings")
                     if build_success then
                         built_targets = built_targets + 1
                     else
-                        sleep_sec = 1000 * 2
+                        sleep_sec = 1000 * 3
                     end
 
                     print_info(name, built_targets, total_targets, relative_path, output, status)
