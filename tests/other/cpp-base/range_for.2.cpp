@@ -21,6 +21,8 @@ int main() {
     auto __begin = range.begin();
     auto __end = range.end();
 
+    d2ds_assert(__begin != __end);
+
     d2ds_assert_eq(*__begin, 0);
     ++__begin;
     d2ds_assert_eq(*__begin, 1);

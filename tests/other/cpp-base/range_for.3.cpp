@@ -16,6 +16,14 @@
 #include "exercises/other/cpp-base/RangeFor.hpp"
 
 int main() {
+
+    { // avoid "__begin == __end" lead to checker's assert invalid
+        d2ds::py_range range(0, 10);
+        auto __begin = range.begin();
+        auto __end = range.end();
+        d2ds_assert(__begin != __end);
+    }
+
     {
         int index = 0;
         for (int val : d2ds::py_range(0, 10)) {
