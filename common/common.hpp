@@ -33,6 +33,36 @@
 
 namespace d2ds {
 
+class BigFiveTest {
+public:
+
+    struct Obj {
+        Obj(int data_ = 0) : data { data_ } { get_test_data_e().mDestructor++; }
+        Obj(const Obj &obj) { }
+        Obj & operator=(const Obj &obj) { return *this; }
+        Obj(Obj &&obj) { }
+        Obj & operator=(Obj &&obj) { return *this; }
+        ~Obj() {  }
+
+        int data;
+    };
+
+    static bool destructor() {
+        d2ds_assert_eq(get_test_data_e().mDestructor, 0);
+        return get_test_data_e().mDestructor == 0;
+    }
+
+private:
+    struct TestData {
+        int mDestructor = 0;
+    };
+
+    static TestData & get_test_data_e() {
+        static TestData data;
+        return data;
+    }
+};
+
 template <typename DSVType>
 static void random_data_generator(DSVType &dsv, int rangeL, int rangeR) {
     // test: random data

@@ -54,6 +54,26 @@ target("3.array-1")
     set_kind("binary")
     add_files("tests/array/array.1.cpp")
 
+target("3.array-2")
+    set_kind("binary")
+    add_files("tests/array/array.2.cpp")
+
+target("3.array-3")
+    set_kind("binary")
+    add_files("tests/array/array.3.cpp")
+
+target("3.array-4")
+    set_kind("binary")
+    add_files("tests/array/array.4.cpp")
+
+target("3.array-5")
+    set_kind("binary")
+    add_files("tests/array/array.5.cpp")
+
+target("3.array-6")
+    set_kind("binary")
+    add_files("tests/array/array.6.cpp")
+
 -- dslings: auto checker and update status for exercises
 task("dslings")
     on_run(function()
@@ -61,7 +81,7 @@ task("dslings")
         import("core.project.target")
         import("core.base.global")
 
-        local checker_pass = false
+        local checker_pass = true
 
         local dslings_checker_pass_config = {
             ["0.dslings-0"]     = checker_pass,

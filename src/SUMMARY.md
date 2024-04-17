@@ -5,8 +5,8 @@
 - [资源](./Resources.md)
 
 # 常用数据结构
-- [数组]()
-  - [Array数组]()
+- [数组](0_array.md)
+  - [Array数组](chapter_01_array.md)
   - [Vector动态数组]()
 
 - [链表]()
