@@ -1,7 +1,7 @@
 // range_for.0.cpp - readonly
 //
 // 描述:
-//  实现py_range的类型定义
+//  实现PyRange的类型定义
 //
 // 目标/要求:
 //  - 不修改该代码检测文件
@@ -15,7 +15,7 @@
 #include "exercises/other/cpp-base/RangeFor.hpp"
 
 int main() {
-    d2ds::py_range(0, 10);
-    d2ds::py_range(0, 5, 200);
+    d2ds::PyRange(0, 10);
+    d2ds::PyRange(0, 5, 200);
     return 0;
 }

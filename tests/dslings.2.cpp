@@ -30,7 +30,7 @@ int main() {
 
 // random test
     dstruct::Array<int, 10> data;
-    d2ds::randomDataGenerator(data, 0, 200);
+    d2ds::random_data_generator(data, 0, 200);
     d2ds::ds_print(data);
 
     int maxVal = 0;

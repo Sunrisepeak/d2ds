@@ -1,5 +1,5 @@
-#ifndef __DSLINGS_CONFIG_HPP__D2DS
-#define __DSLINGS_CONFIG_HPP__D2DS
+#ifndef DSLINGS_CONFIG_HPP_D2DS
+#define DSLINGS_CONFIG_HPP_D2DS
 
 /*
 // checker config

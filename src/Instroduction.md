@@ -70,7 +70,7 @@ int main() {
 
 // random test
     dstruct::Array<int, 10> data;
-    d2ds::randomDataGenerator(data, 0, 200);
+    d2ds::random_data_generator(data, 0, 200);
     d2ds::ds_print(data);
 
     int maxVal = 0;
@@ -146,7 +146,7 @@ MaxVal的应用测试 - 获取最大数组中最大值
 ```cpp
 // random test
     dstruct::Array<int, 10> data;
-    d2ds::randomDataGenerator(data, 0, 200);
+    d2ds::random_data_generator(data, 0, 200);
     d2ds::ds_print(data);
 
     int maxVal = 0;
@@ -170,10 +170,10 @@ MaxVal的应用测试 - 获取最大数组中最大值
 ```cpp
 class MaxValue {
 public:
-    MaxValue(int val) : __mMaxVal { val } { }
+    MaxValue(int val) : mMaxVal_e { val } { }
 
 private:
-    int __mMaxVal;
+    int mMaxVal_e;
 };
 ```
 
@@ -184,11 +184,11 @@ class MaxValue {
 public:
     //...
     int get() {
-        return __mMaxVal;
+        return mMaxVal_e;
     }
 
 private:
-    int __mMaxVal;
+    int mMaxVal_e;
 };
 ```
 
@@ -199,13 +199,13 @@ class MaxValue {
 public:
     //...
     void set(int val) {
-        if (val > __mMaxVal) {
-            __mMaxVal = val;
+        if (val > mMaxVal_e) {
+            mMaxVal_e = val;
         }
     }
 
 private:
-    int __mMaxVal;
+    int mMaxVal_e;
 };
 ```
 

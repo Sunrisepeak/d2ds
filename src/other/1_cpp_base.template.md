@@ -243,22 +243,22 @@ class Box {
 template <typename T>
 class Box {
 public:
-    Box() : __mVal{} { }
+    Box() : mVal_e{} { }
 
     T get_value() const {
-        return __mVal;
+        return mVal_e;
     }
 
     void set_value(const T &val) {
-        __mVal = val;
+        mVal_e = val;
     }
 
 private:
-    T __mVal;
+    T mVal_e;
 };
 ```
 
-在Box的实现中, 使用`T __mVal;`定义了一个存储用户指定类型值的成员变量。并且在`get_value`和`set_value`成员函数中也像使用正常的类型一样使用**类型名`T`**。它是一个未确定的类型的标识符, 在编译期编译器将会根据使用者指定的类型来去实例化出对应的版本, 就像上面函数模板一样。总之, 在编写模板代码的时候我们可以把`T`当成一个**未知类型名**, 像正常大多数类型名的用法一样来使用它。
+在Box的实现中, 使用`T mVal_e;`定义了一个存储用户指定类型值的成员变量。并且在`get_value`和`set_value`成员函数中也像使用正常的类型一样使用**类型名`T`**。它是一个未确定的类型的标识符, 在编译期编译器将会根据使用者指定的类型来去实例化出对应的版本, 就像上面函数模板一样。总之, 在编写模板代码的时候我们可以把`T`当成一个**未知类型名**, 像正常大多数类型名的用法一样来使用它。
 
 > 注:
 > 

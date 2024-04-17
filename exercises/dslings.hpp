@@ -1,9 +1,8 @@
-#ifndef __DSLINGS_HPP__D2DS
-#define __DSLINGS_HPP__D2DS
+#ifndef DSLINGS_HPP_D2DS
+#define DSLINGS_HPP_D2DS
 
 namespace d2ds {
 // show your code
-
 
 
 
@@ -11,21 +10,21 @@ namespace d2ds {
 class MaxValue {
 public:
     MaxValue(int val) {
-        __mMaxVal = val;
+        mMaxVal_e = val;
     }
 
     int get() {
-        return __mMaxVal;
+        return mMaxVal_e;
     }
 
     void set(int val) {
-        if (val > __mMaxVal) {
-            __mMaxVal = val;
+        if (val > mMaxVal_e) {
+            mMaxVal_e = val;
         }
     }
 
 private:
-    int __mMaxVal;
+    int mMaxVal_e;
 };
 */
 

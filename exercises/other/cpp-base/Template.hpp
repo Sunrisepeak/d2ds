@@ -1,5 +1,5 @@
-#ifndef __TEMPLATE_HPP__D2DS
-#define __TEMPLATE_HPP__D2DS
+#ifndef TEMPLATE_HPP_D2DS
+#define TEMPLATE_HPP_D2DS
 
 namespace d2ds {
 // show your code

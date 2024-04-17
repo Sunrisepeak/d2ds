@@ -1,5 +1,5 @@
-#ifndef __ARRAY_HPP__D2DS
-#define __ARRAY_HPP__D2DS
+#ifndef ARRAY_HPP_D2DS
+#define ARRAY_HPP_D2DS
 
 namespace d2ds {
 //using dstruct::Array;

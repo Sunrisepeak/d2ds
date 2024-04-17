@@ -1,5 +1,5 @@
-#ifndef __LOGGER_HPP__HONLY
-#define __LOGGER_HPP__HONLY
+#ifndef LOGGER_HPP__HONLY
+#define LOGGER_HPP__HONLY
 
 #include <cstdio>
 

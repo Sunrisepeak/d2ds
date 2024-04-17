@@ -8,15 +8,15 @@
   - 使用普通for循环
   - 使用范围for循环
 - 自定义类型如何支持这个语法糖？
-- 模拟Python中range - 实现py_range
+- 模拟Python中range - 实现PyRange
   - 代码演示
     - Python - range
     - dslings - 测试代码
     - dslings - 检测结果
-  - py_range - 类型定义
-  - py_range - begin 和 end
-  - py_range - 迭代器的 * 和 ++ 操作
-  - py_range - 完整实现
+  - PyRange - 类型定义
+  - PyRange - begin 和 end
+  - PyRange - 迭代器的 * 和 ++ 操作
+  - PyRange - 完整实现
 - 总结
 
 ---
@@ -111,9 +111,9 @@ int main() {
 
 下面我就以一个例子的实现来具体阐述和感受**自定类型**支持范围for的完整过程
 
-## 模拟Python中range - 实现py_range
+## 模拟Python中range - 实现PyRange
 
-range 类型表示不可变的数字序列，通常用于在 for 循环中循环指定的次数。下面我们将简单介绍一下Python中range对象在for循环中的应用, 然后在使用C++实现一个**支持范围for循环的py_range**来近似模拟它的行为。
+range 类型表示不可变的数字序列，通常用于在 for 循环中循环指定的次数。下面我们将简单介绍一下Python中range对象在for循环中的应用, 然后在使用C++实现一个**支持范围for循环的PyRange**来近似模拟它的行为。
 
 **Python - range**
 
@@ -155,13 +155,13 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 **dslings - 测试代码**
 
-为了简单py_range只模拟**Python - range**中在for循环中应用的有限部分。下面是py_range在范围for循环中生成索引数据(int)的代码示例:
+为了简单PyRange只模拟**Python - range**中在for循环中应用的有限部分。下面是PyRange在范围for循环中生成索引数据(int)的代码示例:
 
 ```cpp
 // range_for.3.cpp - readonly
 //
 // 描述:
-//  实现py_range在范围for循环的支持, 并保证数据生成的正确性
+//  实现PyRange在范围for循环的支持, 并保证数据生成的正确性
 //
 // 目标/要求:
 //  - 不修改该代码检测文件
@@ -178,7 +178,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 int main() {
     {
         int index = 0;
-        for (int val : d2ds::py_range(0, 10)) {
+        for (int val : d2ds::PyRange(0, 10)) {
             d2ds_assert_eq(val, index);
             index++;
         }
@@ -186,7 +186,7 @@ int main() {
 
     {
         int index = 0, step = 5;
-        for (auto val : d2ds::py_range(0, 50, step)) {
+        for (auto val : d2ds::PyRange(0, 50, step)) {
             d2ds_assert_eq(val, index);
             index += step;
         }
@@ -198,12 +198,12 @@ int main() {
 }
 ```
 
-上述代码中, 在接口的使用上为了更像Python中的range, py_range也遵从了如下设计
+上述代码中, 在接口的使用上为了更像Python中的range, PyRange也遵从了如下设计
 
 
 | 接口 | 简介 |
 | - | - |
-| `py_range(start, stop, step = 1)` | step为值变化步长默认为1.数据生成遵从左闭右开原则 |
+| `PyRange(start, stop, step = 1)` | step为值变化步长默认为1.数据生成遵从左闭右开原则 |
 
 **dslings - 检测结果**
 
@@ -220,7 +220,7 @@ Output:
 ====================
 [D2DS LOGI]: - ✅ | start < stop
 [D2DS LOGI]: - ✅ | step > 0
-[D2DS LOGI]: - ✅ | __mLen <= 100
+[D2DS LOGI]: - ✅ | mLen_e <= 100
 [D2DS LOGI]: - ✅ | val == index (0 == 0)
 [D2DS LOGI]: - ✅ | val == index (1 == 1)
 [D2DS LOGI]: - ✅ | val == index (2 == 2)
@@ -233,7 +233,7 @@ Output:
 [D2DS LOGI]: - ✅ | val == index (9 == 9)
 [D2DS LOGI]: - ✅ | start < stop
 [D2DS LOGI]: - ✅ | step > 0
-[D2DS LOGI]: - ✅ | __mLen <= 100
+[D2DS LOGI]: - ✅ | mLen_e <= 100
 [D2DS LOGI]: - ✅ | val == index (0 == 0)
 [D2DS LOGI]: - ✅ | val == index (5 == 5)
 [D2DS LOGI]: - ✅ | val == index (10 == 10)
@@ -251,38 +251,38 @@ Output:
 Book: https://sunrisepeak.github.io/d2ds
 ```
 
-### py_range - 类型定义
+### PyRange - 类型定义
 
 ```cpp
-d2ds::py_range(0, 10);
-d2ds::py_range(0, 5, 200);
+d2ds::PyRange(0, 10);
+d2ds::PyRange(0, 5, 200);
 ```
 
-py_range的构造函数为了简单, 使用了三个int作为输入参数, 并且为了支持上面两种使用模式最后一个参数step使用了默认参数为1的设置
+PyRange的构造函数为了简单, 使用了三个int作为输入参数, 并且为了支持上面两种使用模式最后一个参数step使用了默认参数为1的设置
 
 ```cpp
-class py_range {
+class PyRange {
 public:
-    py_range(int start, int stop, int step = 1) {
+    PyRange(int start, int stop, int step = 1) {
 
     }
 };
 ```
 
-### py_range - begin 和 end
+### PyRange - begin 和 end
 
 ```cpp
-d2ds::py_range range(2, 10);
-auto __begin = range.begin();
-auto __end = range.end();
+d2ds::PyRange range(2, 10);
+auto begin = range.begin();
+auto end = range.end();
 ```
 
-给py_range实现两个无参数的成员函数begin和end, 搭出基本结构
+给PyRange实现两个无参数的成员函数begin和end, 搭出基本结构
 
 ```cpp
-class py_range {
+class PyRange {
 public:
-    py_range(int start, int stop, int step = 1) {
+    PyRange(int start, int stop, int step = 1) {
 
     }
 
@@ -297,88 +297,88 @@ public:
 };
 ```
 
-### py_range - 迭代器的 * 和 ++ 操作
+### PyRange - 迭代器的 * 和 ++ 操作
 
 ```cpp
-d2ds::py_range range(0, 10);
+d2ds::PyRange range(0, 10);
 
-auto __begin = range.begin();
-auto __end = range.end();
+auto begin = range.begin();
+auto end = range.end();
 
-d2ds_assert_eq(*__begin, 0);
-++__begin;
-d2ds_assert_eq(*__begin, 1);
+d2ds_assert_eq(*begin, 0);
+++begin;
+d2ds_assert_eq(*begin, 1);
 ```
 
 C++的范围for循环使用的迭代器, 是一种类指针行为的类型。幸运的是原生指针就符合这种迭代器的性质, 所以这里让`begin/end`返回`const int *`类型, 这就自动实现了*操作符解引用获取int类型数据和通过++自增运算符移动到下一个数据。
 
-通过在py_range内部设置一个数组__mArr用来存储数据值和一个__mLen来标识结束位置来简化实现, 虽然它看起来很不优雅。同时在构造函数中暂时也只实现step等于1的情况
+通过在PyRange内部设置一个数组mArr_e用来存储数据值和一个mLen_e来标识结束位置来简化实现, 虽然它看起来很不优雅。同时在构造函数中暂时也只实现step等于1的情况
 
 ```cpp
-class py_range {
+class PyRange {
 public:
-    py_range(int start, int stop, int step = 1) {
-        __mLen = stop - start;
-        for (int i = 0; i < __mLen; i++) {
-            __mArr[i] = i + start;
+    PyRange(int start, int stop, int step = 1) {
+        mLen_e = stop - start;
+        for (int i = 0; i < mLen_e; i++) {
+            mArr_e[i] = i + start;
         }
     }
 
 public:
     const int * begin() const {
-        return __mArr;
+        return mArr_e;
     }
 
     const int * end() const {
-        return __mArr + __mLen;
+        return mArr_e + mLen_e;
     }
 
 private:
-    int __mLen;
-    int __mArr[100];
+    int mLen_e;
+    int mArr_e[100];
 };
 
 ```
 
-> 注: 本文为了简单实现py_range的方式是不够优雅的, 相对优雅一些的实现见[设计模式 - 迭代器设计模式]()章节中的实现
+> 注: 本文为了简单实现PyRange的方式是不够优雅的, 相对优雅一些的实现见[设计模式 - 迭代器设计模式]()章节中的实现
 
 
-### py_range - 完整实现
+### PyRange - 完整实现
 
-这里完善了py_range构造函数中对step的支持和增加了一些参数限制的检测
+这里完善了PyRange构造函数中对step的支持和增加了一些参数限制的检测
 
 ```cpp
-class py_range {
+class PyRange {
 public:
-    py_range(int start, int stop, int step = 1) {
+    PyRange(int start, int stop, int step = 1) {
 
-        __mLen =  (stop - start) / step;
+        mLen_e =  (stop - start) / step;
 
         d2ds_assert(start < stop);
         d2ds_assert(step > 0);
-        d2ds_assert(__mLen <= 100);
+        d2ds_assert(mLen_e <= 100);
 
-        for (int i = 0; i < __mLen; i++) {
-            __mArr[i] = start;
+        for (int i = 0; i < mLen_e; i++) {
+            mArr_e[i] = start;
             start = start + step;
         }
     }
 
 public:
     const int * begin() const {
-        return __mArr;
+        return mArr_e;
     }
 
     const int * end() const {
-        return __mArr + __mLen;
+        return mArr_e + mLen_e;
     }
 
 private:
-    int __mLen;
-    int __mArr[100];
+    int mLen_e;
+    int mArr_e[100];
 };
 ```
 
 ## 总结
 
-本小节先是对比了普通for循环和范围for循环的使用, 然后通过分析编译器对**范围for循环**的代码展开结构, 来探究在自定义类型中如何实现**范围for循环**的支持, 最后通过实现一个模拟Python中常用的range对象 —— py_range, 来进一步通过写代码的方式体验实现**范围for循环**支持的完整过程。那么, 现在快去给自己实现的数据结构添加**范围for循环**的语法糖支持吧(如果你的数据结构内存布局不是连续存储, 你可能还需要阅读[设计模式 - 迭代器设计模式]()章节中的内容)...
+本小节先是对比了普通for循环和范围for循环的使用, 然后通过分析编译器对**范围for循环**的代码展开结构, 来探究在自定义类型中如何实现**范围for循环**的支持, 最后通过实现一个模拟Python中常用的range对象 —— PyRange, 来进一步通过写代码的方式体验实现**范围for循环**支持的完整过程。那么, 现在快去给自己实现的数据结构添加**范围for循环**的语法糖支持吧(如果你的数据结构内存布局不是连续存储, 你可能还需要阅读[设计模式 - 迭代器设计模式]()章节中的内容)...

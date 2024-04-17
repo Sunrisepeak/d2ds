@@ -1,7 +1,7 @@
 // range_for.3.cpp - readonly
 //
 // 描述:
-//  实现py_range在范围for循环的支持, 并保证数据生成的正确性
+//  实现PyRange在范围for循环的支持, 并保证数据生成的正确性
 //
 // 目标/要求:
 //  - 不修改该代码检测文件
@@ -17,16 +17,16 @@
 
 int main() {
 
-    { // avoid "__begin == __end" lead to checker's assert invalid
-        d2ds::py_range range(0, 10);
-        auto __begin = range.begin();
-        auto __end = range.end();
-        d2ds_assert(__begin != __end);
+    { // avoid "begin == end" lead to checker's assert invalid
+        d2ds::PyRange range(0, 10);
+        auto begin = range.begin();
+        auto end = range.end();
+        d2ds_assert(begin != end);
     }
 
     {
         int index = 0;
-        for (int val : d2ds::py_range(0, 10)) {
+        for (int val : d2ds::PyRange(0, 10)) {
             d2ds_assert_eq(val, index);
             index++;
         }
@@ -34,7 +34,7 @@ int main() {
 
     {
         int index = 0, step = 5;
-        for (auto val : d2ds::py_range(0, 50, step)) {
+        for (auto val : d2ds::PyRange(0, 50, step)) {
             d2ds_assert_eq(val, index);
             index += step;
         }

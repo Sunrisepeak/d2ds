@@ -1,5 +1,5 @@
-#ifndef __COMMON_HPP__D2DS
-#define __COMMON_HPP__D2DS
+#ifndef COMMON_HPP_D2DS
+#define COMMON_HPP_D2DS
 
 #include <iostream>
 #include <string>
@@ -34,7 +34,7 @@
 namespace d2ds {
 
 template <typename DSVType>
-static void randomDataGenerator(DSVType &dsv, int rangeL, int rangeR) {
+static void random_data_generator(DSVType &dsv, int rangeL, int rangeR) {
     // test: random data
     // Choose a random mean between 1 and 2 * ARR_SIZE
     // https://en.cppreference.com/w/cpp/numeric/random
