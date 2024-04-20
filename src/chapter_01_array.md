@@ -152,7 +152,7 @@ public: // bigFive
 //...
     Array(const Array &dsObj) {
         for (int i = 0; i < N; i++) {
-            new (mData_e + i) T(dsObj.mData_e[i]);
+            mData_e[i] = dsObj.mData_e[i];
         }
     }
 //...
@@ -208,7 +208,7 @@ public: // bigFive
 //...
     Array(Array &&dsObj) {
         for (int i = 0; i < N; i++) {
-            new (mData_e + i) T(std::move(dsObj.mData_e[i]));
+            mData_e[i] = std::move(dsObj.mData_e[i]);
         }
     }
 //...

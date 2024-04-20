@@ -6,7 +6,6 @@
 namespace d2ds {
 // show your code
 
-/*
 template <typename T, unsigned int N>
 class Array {
 
@@ -16,7 +15,7 @@ public: // bigFive
 
     Array(const Array &dsObj) {
         for (int i = 0; i < N; i++) {
-            new (mData_e + i) T(dsObj.mData_e[i]);
+            mData_e[i] = dsObj.mData_e[i];
         }
     }
 
@@ -30,7 +29,7 @@ public: // bigFive
 
     Array(Array &&dsObj) {
         for (int i = 0; i < N; i++) {
-            new (mData_e + i) T(std::move(dsObj.mData_e[i]));
+            mData_e[i] = std::move(dsObj.mData_e[i]);
         }
     }
 
@@ -80,6 +79,7 @@ public:
 private:
     T mData_e[N == 0 ? 1 : N];
 };
-*/
+
+
 }
 #endif
