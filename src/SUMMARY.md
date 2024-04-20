@@ -6,8 +6,8 @@
 
 # 常用数据结构
 - [数组](0_array.md)
-  - [Array数组](chapter_01_array.md)
-  - [Vector动态数组]()
+  - [定长数组Array](chapter_01_array.md)
+  - [动态数组Vector]()
 
 - [链表]()
   - [嵌入式单链表]()
