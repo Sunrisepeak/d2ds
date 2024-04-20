@@ -81,7 +81,7 @@ task("dslings")
         import("core.project.target")
         import("core.base.global")
 
-        local checker_pass = true
+        local checker_pass = false
 
         local dslings_checker_pass_config = {
             ["0.dslings-0"]     = checker_pass,
@@ -94,6 +94,13 @@ task("dslings")
             ["2.range_for-1"]   = checker_pass,
             ["2.range_for-2"]   = checker_pass,
             ["2.range_for-3"]   = checker_pass,
+            ["3.array-0"]       = checker_pass,
+            ["3.array-1"]       = checker_pass,
+            ["3.array-2"]       = checker_pass,
+            ["3.array-3"]       = checker_pass,
+            ["3.array-4"]       = checker_pass,
+            ["3.array-5"]       = checker_pass,
+            ["3.array-6"]       = checker_pass,
         }
 
         local function get_len(pairs_type)

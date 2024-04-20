@@ -14,7 +14,7 @@
   - 数据访问 - 下标访问运算符重载
   - 常用函数实现 - size/back
   - 迭代器支持 - 范围for
-  - 负下标访问支持 
+  - 功能扩展 - 负下标访问支持 
 - 总结
 
 ---
@@ -118,8 +118,6 @@ BigFive核心指的是一个类型对象的**拷贝语义**和**移动语义**, 
 | `ClassName(ClassName &&)` | 移动构造 |
 | `ClassName & operator=(ClassName &&)` | 移动赋值 |
 
-> Note: 更多关于BigFive-**拷贝语义**和**移动语义**的介绍放到**C++基础章节**
-
 **析构行为**
 
 由于Array中也是使用原生数组来进行存储数据的, 这里使用使用默认的构造函数和析构和原生数组行为保持一致
@@ -135,6 +133,8 @@ public: // bigFive
 ```
 
 **拷贝语义**
+
+主要是方便数据结构中数据复制的方便
 
 拷贝构造
 
@@ -164,6 +164,14 @@ public: // bigFive
 拷贝赋值
 
 ```cpp
+d2ds::Array<BigFiveTest::Obj, 5> intArr1, intArr2;
+// ...
+intArr1 = intArr2;
+```
+
+通过赋值`=`运算符, 把一个Array中的数据复制到另一个数组中
+
+```cpp
 template <typename T, unsigned int N>
 class Array {
 public: // bigFive
@@ -181,7 +189,17 @@ public: // bigFive
 
 **移动语义**
 
+有些场景为了性能会使用**移动语义**, 只去改变数据的**所有权(ownership)**来避免数据资源的重复制、频繁分配/释放带来的开销
+
 移动构造
+
+```cpp
+d2ds::Array<BigFiveTest::Obj, 5> intArr1;
+//...
+d2ds::Array<BigFiveTest::Obj, 5> intArr2 { std::move(intArr1) };
+```
+
+这里假设intArr1后续不在使用, 如果使用**拷贝构造**, 可能就会造成`BigFiveTest::Obj`中动态分配的资源没有必要的分配和复制。例如, 对象中有一个指针并指向一块资源, 使用移动构造去触发对象只复制资源的地址, 而不需要重新分配并做数据复制。**移动构造**中不仅要把数据结构的资源进行移动, 一些情况也要把**移动语义**传给直接管理的数据
 
 ```cpp
 template <typename T, unsigned int N>
@@ -200,6 +218,14 @@ public: // bigFive
 移动赋值
 
 ```cpp
+d2ds::Array<BigFiveTest::Obj, 5> intArr1, intArr2;
+// ...
+intArr1 = std::move(intArr2);
+```
+
+移动赋值和移动构造一样
+
+```cpp
 template <typename T, unsigned int N>
 class Array {
 public: // bigFive
@@ -215,7 +241,9 @@ public: // bigFive
 };
 ```
 
-> 注意: D2DS_SELF_ASSIGNMENT_CHECKER 宏是防止对象自我赋值情况的一个检测。例如:对象myObj赋值给自己(`myObj = myObj;`)。 该宏的实现原理(`if (this == &dsObj) return *this;`)是通过地址检查来规避这种情况
+> Note1: D2DS_SELF_ASSIGNMENT_CHECKER 宏是防止对象自我赋值情况的一个检测。例如:对象myObj赋值给自己(`myObj = myObj;`)。 该宏的实现原理(`if (this == &dsObj) return *this;`)是通过地址检查来规避这种情况
+
+> Note2: 对于Array的移动语义是不够直观的, 在Vector实现中有更直观的使用, 且更多关于BigFive-**拷贝语义**和**移动语义**的介绍将放到**C++基础章节**
 
 ### 数据访问 - 下标运算符重载
 
@@ -278,6 +306,8 @@ public:
 
 ### 迭代器支持
 
+对于Array的迭代器, 由于内部是使用数组来存储数据, 数据是在连续内存空间上的, 可以直接使用类型的指针作为迭代器类型来做迭代器支持和范围for的使用
+
 ```cpp
 template <typename T, unsigned int N>
 class Array {
@@ -293,9 +323,11 @@ public:
 };
 ```
 
-### 额外功能 - 负下标访问
+> Note: 关于范围for和迭代器相关的内容见**相关主体**部分
 
+### 扩展功能 - 负下标访问
 
+在里在给Array添加一个**扩展功能**, 像其他一些语言来支持负号下标访问
 
 ```cpp
 template <typename T, unsigned int N>

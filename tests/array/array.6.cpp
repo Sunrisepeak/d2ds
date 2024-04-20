@@ -1,4 +1,4 @@
-// array.0.cpp - readonly
+// array.6.cpp - readonly
 //
 // 描述:
 //  数据结构Array负下标访问数据支持

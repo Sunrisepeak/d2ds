@@ -4,10 +4,9 @@
 #include <initializer_list>
 
 namespace d2ds {
-//using dstruct::Array;
-
 // show your code
 
+/*
 template <typename T, unsigned int N>
 class Array {
 
@@ -81,6 +80,6 @@ public:
 private:
     T mData_e[N == 0 ? 1 : N];
 };
-
+*/
 }
 #endif

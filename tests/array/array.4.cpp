@@ -1,7 +1,7 @@
-// array.0.cpp - readonly
+// array.4.cpp - readonly
 //
 // 描述:
-//  数据结构Array的常用函数实现
+//  数据结构Array常用函数实现
 //
 // 目标/要求:
 //  - 实现 size, back 成员函数
