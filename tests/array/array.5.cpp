@@ -16,9 +16,11 @@
 int main() {
     d2ds::Array<int, 5> intArr { 0, 1, 2, 3, 4 };
 
+    d2ds_assert(intArr.begin() != intArr.end());
+
     int val = 0;
     for (int data : intArr) {
-        d2ds_assert_eq(val, intArr);
+        d2ds_assert_eq(data, val);
         val++;
     }
 

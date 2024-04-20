@@ -1,7 +1,7 @@
-// array.0.cpp - readonly
+// array.3.cpp - readonly
 //
 // 描述:
-//  数据结构Array的模板类的数据访问
+//  数据结构Array模板类的数据访问
 //
 // 目标/要求:
 //  - 实现下标访问功能
@@ -15,6 +15,8 @@
 
 int main() {
     d2ds::Array<int, 5> intArr { 5, 4, 3, 2, 1 };
+
+    intArr[1] = 6;
 
     d2ds_assert_eq(intArr[0], 5);
     d2ds_assert_eq(intArr[4], 1);

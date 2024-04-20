@@ -37,6 +37,8 @@
 - [C++基础](other/1_cpp_base.md)
   - [范型编程](other/1_cpp_base.template.md)
   - [语法糖 | 范围for循环](other/2_cpp_base.rangefor.md)
+  - [BigFive类行为控制]()
+  - [深入理解new/delete]()
 - [内存管理]()
 - [设计模式]()
   - [迭代器设计模式]()

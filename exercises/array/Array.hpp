@@ -53,6 +53,31 @@ public: // bigFive
 
     ~Array() = default;
 
+public:
+    T & operator[](int index) {
+        if (index < 0)
+            index = N + index;
+        return mData_e[index];
+    }
+
+public:
+    unsigned int size() const {
+        return N;
+    }
+
+    T back() const {
+        return mData_e[N != 0 ? N - 1 : 0];
+    }
+
+public:
+    int * begin() {
+        return mData_e;
+    }
+
+    int * end() {
+        return mData_e + N;
+    }
+
 private:
     T mData_e[N == 0 ? 1 : N];
 };
