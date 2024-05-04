@@ -7,7 +7,7 @@
 # 常用数据结构
 - [数组](0_array.md)
   - [定长数组Array](chapter_01_array.md)
-  - [动态数组Vector]()
+  - [动态数组Vector](chapter_02_vector.md)
 
 - [链表]()
   - [嵌入式单链表]()
@@ -37,7 +37,7 @@
 - [C++基础](other/1_cpp_base.md)
   - [范型编程](other/1_cpp_base.template.md)
   - [语法糖 | 范围for循环](other/2_cpp_base.rangefor.md)
-  - [BigFive类行为控制]()
+  - [行为控制](other/3_cpp_base.bigfive.md)
   - [深入理解new/delete]()
 - [内存管理]()
 - [设计模式]()

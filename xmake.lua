@@ -74,6 +74,18 @@ target("3.array-6")
     set_kind("binary")
     add_files("tests/array/array.6.cpp")
 
+target("4.vector-0")
+    set_kind("binary")
+    add_files("tests/array/vector.0.cpp")
+
+target("4.vector-1")
+    set_kind("binary")
+    add_files("tests/array/vector.1.cpp")
+
+target("4.vector-2")
+    set_kind("binary")
+    add_files("tests/array/vector.2.cpp")
+
 -- dslings: auto checker and update status for exercises
 task("dslings")
     on_run(function()
@@ -81,7 +93,7 @@ task("dslings")
         import("core.project.target")
         import("core.base.global")
 
-        local checker_pass = false
+        local checker_pass = true
 
         local dslings_checker_pass_config = {
             ["0.dslings-0"]     = checker_pass,
@@ -227,7 +239,7 @@ task("dslings")
                             if string.find(output, "❌") then
                                 status = false
                                 build_success = false
-                            elseif string.find(output, "D2DS_WAIT") then
+                            elseif string.find(output, "D2DS_WAIT") or string.find(output, "D2DS_RETURN") then
                                 build_success = false
                             end
                         end

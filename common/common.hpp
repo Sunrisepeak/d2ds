@@ -33,10 +33,51 @@
 }
 
 #define D2DS_WAIT HONLY_LOGW("Delete the D2DS_WAIT to continue...");
+#define D2DS_RETURN HONLY_LOGW("Delete the D2DS_RETURN to continue..."); return 0;
 
 #define D2DS_SELF_ASSIGNMENT_CHECKER if (this == &dsObj) return *this;
 
 namespace d2ds {
+
+struct DefaultAllocator {
+
+    static void * allocate(int bytes) {
+        allocate_counter()++;
+        if (debug())
+            HONLY_LOGI("DefaultAllocator: try to allocate %d bytes", bytes);
+        return malloc(bytes);
+    }
+
+    static void deallocate(void *addr, int bytes) {
+        deallocate_counter()++;
+        if (debug())
+            HONLY_LOGI("DefaultAllocator: free addr %p, bytes %d", addr, bytes);
+        assert(addr != nullptr);
+        free(addr);
+    }
+
+public: // config & status
+    static bool & debug() {
+        static bool debugFlag = false;
+        return debugFlag;
+    }
+
+    static int & allocate_counter() {
+        static int cnt = 0;
+        return cnt;
+    }
+
+    static int & deallocate_counter() {
+        static int cnt = 0;
+        return cnt;
+    }
+
+    static void clear_status() {
+        allocate_counter() = 0;
+        deallocate_counter() = 0;
+    }
+
+};
 
 class BigFiveTest {
 public:
@@ -44,8 +85,12 @@ public:
     struct Obj {
         Obj(int data_ = 0) : data { data_ } { get_test_data_e().mDestructor++; }
 
-        Obj(const Obj &obj) { get_test_data_e().mCopyConstructor = true; }
+        Obj(const Obj &obj) {
+            get_test_data_e().mDestructor++;
+            get_test_data_e().mCopyConstructor = true;
+        }
         Obj & operator=(const Obj &obj) {
+            get_test_data_e().mDestructor++;
             get_test_data_e().mCopyAssignment = true;
             if (this == &obj) get_test_data_e().mSelfAssignment = true;
             return *this;
@@ -66,38 +111,59 @@ public:
 public: // checker
     static bool destructor(bool enableInfo = false) {
         if (enableInfo)
-            HONLY_LOGI("checker -> %d == 0", get_test_data_e().mDestructor);
+            HONLY_LOGD("checker -> %d == 0", get_test_data_e().mDestructor);
         return get_test_data_e().mDestructor == 0;
     }
 
     static bool copy_constructor(bool enableInfo = false) {
         if (enableInfo)
-            HONLY_LOGI("checker -> %d", get_test_data_e().mCopyConstructor);
+            HONLY_LOGD("checker -> %d", get_test_data_e().mCopyConstructor);
         return get_test_data_e().mCopyConstructor;
     }
 
     static bool copy_assignment(bool enableInfo = false) {
         if (enableInfo)
-            HONLY_LOGI("checker -> %d", get_test_data_e().mCopyAssignment);
+            HONLY_LOGD("checker -> %d", get_test_data_e().mCopyAssignment);
         return get_test_data_e().mCopyAssignment;
     }
 
     static bool move_constructor(bool enableInfo = false) {
         if (enableInfo)
-            HONLY_LOGI("checker -> %d", get_test_data_e().mMoveConstructor);
+            HONLY_LOGD("checker -> %d", get_test_data_e().mMoveConstructor);
         return get_test_data_e().mMoveConstructor;
     }
 
     static bool move_assignment(bool enableInfo = false) {
         if (enableInfo)
-            HONLY_LOGI("checker -> %d", get_test_data_e().mMoveAssignment);
+            HONLY_LOGD("checker -> %d", get_test_data_e().mMoveAssignment);
         return get_test_data_e().mMoveAssignment;
     }
 
     static bool self_assignment(bool enableInfo = false) {
         if (enableInfo)
-            HONLY_LOGI("checker -> %d", get_test_data_e().mMoveAssignment);
+            HONLY_LOGD("checker -> %d", get_test_data_e().mMoveAssignment);
         return get_test_data_e().mSelfAssignment == false;
+    }
+
+public:
+    static bool copy_constructor_pass() {
+        get_test_data_e().mCopyConstructor = true;
+    }
+
+    static bool copy_assignment_pass() {
+        get_test_data_e().mCopyAssignment = true;
+    }
+
+    static bool move_constructor_pass() {
+        get_test_data_e().mMoveConstructor = true;
+    }
+
+    static bool move_assignment_pass() {
+        get_test_data_e().mMoveAssignment = true;
+    }
+
+    static bool self_assignment_pass() {
+        get_test_data_e().mSelfAssignment = true;
     }
 
 public:

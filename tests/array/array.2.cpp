@@ -1,7 +1,7 @@
 // array.2.cpp - readonly
 //
 // 描述:
-//  数据结构Array模板类行为控制(显式定义bigfive)
+//  数据结构Array类模板行为控制(显式定义bigfive)
 //  (构造|析构 / 赋值构造 / 赋值分配 / 移动构造 / 移动赋值)
 //  https://en.cppreference.com/w/cpp/language/rule_of_three
 //
