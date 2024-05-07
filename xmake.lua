@@ -74,14 +74,42 @@ target("3.array-6")
     set_kind("binary")
     add_files("tests/array/array.6.cpp")
 
+target("4.vector-0")
+    set_kind("binary")
+    add_files("tests/vector/vector.0.cpp")
+
+target("4.vector-1")
+    set_kind("binary")
+    add_files("tests/vector/vector.1.cpp")
+
+target("4.vector-2")
+    set_kind("binary")
+    add_files("tests/vector/vector.2.cpp")
+
+target("4.vector-3")
+    set_kind("binary")
+    add_files("tests/vector/vector.3.cpp")
+
+target("4.vector-4")
+    set_kind("binary")
+    add_files("tests/vector/vector.4.cpp")
+
+target("4.vector-5")
+    set_kind("binary")
+    add_files("tests/vector/vector.5.cpp")
+
 -- dslings: auto checker and update status for exercises
 task("dslings")
     on_run(function()
         import("core.project.project")
         import("core.project.target")
         import("core.base.global")
+        import("core.base.option")
 
         local checker_pass = false
+        local start_target = option.get("start_target")
+
+        print(start_target)
 
         local dslings_checker_pass_config = {
             ["0.dslings-0"]     = checker_pass,
@@ -101,6 +129,12 @@ task("dslings")
             ["3.array-4"]       = checker_pass,
             ["3.array-5"]       = checker_pass,
             ["3.array-6"]       = checker_pass,
+            ["4.vector-0"]      = checker_pass,
+            ["4.vector-1"]      = checker_pass,
+            ["4.vector-2"]      = checker_pass,
+            ["4.vector-3"]      = checker_pass,
+            ["4.vector-4"]      = checker_pass,
+            ["4.vector-5"]      = checker_pass,
         }
 
         local function get_len(pairs_type)
@@ -176,74 +210,84 @@ task("dslings")
 
         table.sort(sorted_targets)
 
+        local skip = true
         for _, name in pairs(sorted_targets) do
-            local files = targets[name]:sourcefiles()
-            for  _, file in ipairs((files)) do
-                local relative_path = path.relative(file, base_dir)
-                local build_success = false
-                local sleep_sec = 1000 * 0.1
-                local output = ""
 
-                while not build_success do
-                    --build_success = task.run("build", {target = name})
-                    build_success = true
-                    try
-                    {
-                        function()
-                            os.iorunv("xmake", {"build", name})
-                            --os.iorunv("xmake", {"build", "-v", name})
-                        end,
-                        catch
+            if skip and string.find(name, start_target) then
+                skip = false;
+            end
+
+            if not skip then
+                local files = targets[name]:sourcefiles()
+                for  _, file in ipairs((files)) do
+                    local relative_path = path.relative(file, base_dir)
+                    local build_success = false
+                    local sleep_sec = 1000 * 0.1
+                    local output = ""
+
+                    while not build_success do
+                        --build_success = task.run("build", {target = name})
+                        build_success = true
+                        try
                         {
-                            -- After an exception occurs, it is executed
-                            function (e)
-                                output = e
-                                build_success = false
-                            end
-                        }
-                    }
-
-                    if build_success then
-                        try {
-                            function () 
-                                output, _ = os.iorunv("xmake", {"r", name})
+                            function()
+                                os.iorunv("xmake", {"build", name})
+                                --os.iorunv("xmake", {"build", "-v", name})
                             end,
                             catch
                             {
+                                -- After an exception occurs, it is executed
                                 function (e)
                                     output = e
                                     build_success = false
                                 end
                             }
                         }
-                    end
 
-                    local status = build_success
+                        if build_success then
+                            try {
+                                function () 
+                                    output, _ = os.iorunv("xmake", {"r", name})
+                                end,
+                                catch
+                                {
+                                    function (e)
+                                        output = e
+                                        build_success = false
+                                    end
+                                }
+                            }
+                        end
 
-                    if dslings_checker_pass_config[name] == true then
-                        build_success = true
-                    else
-                        if type(output) == "string" then
-                            if string.find(output, "❌") then
-                                status = false
-                                build_success = false
-                            elseif string.find(output, "D2DS_WAIT") then
-                                build_success = false
+                        local status = build_success
+
+                        if dslings_checker_pass_config[name] == true then
+                            build_success = true
+                        else
+                            if type(output) == "string" then
+                                if string.find(output, "❌") then
+                                    status = false
+                                    build_success = false
+                                elseif string.find(output, "D2DS_WAIT") or string.find(output, "D2DS_RETURN") then
+                                    build_success = false
+                                end
                             end
                         end
+
+                        if build_success then
+                            built_targets = built_targets + 1
+                        else
+                            sleep_sec = 1000 * 3
+                        end
+
+                        print_info(name, built_targets, total_targets, relative_path, output, status)
+                        output = ""
+                        os.sleep(sleep_sec)
+
                     end
-
-                    if build_success then
-                        built_targets = built_targets + 1
-                    else
-                        sleep_sec = 1000 * 3
-                    end
-
-                    print_info(name, built_targets, total_targets, relative_path, output, status)
-                    output = ""
-                    os.sleep(sleep_sec)
-
                 end
+            else
+                built_targets = built_targets + 1
             end
         end
 
@@ -257,7 +301,9 @@ MoreInfo: https://github.com/Sunrisepeak/DStruct\
 
     end)
     set_menu({
-                usage = "xmake dslings",
-                description = "Check and compile files with custom progress output and clear screen.",
-                options = {}
+                usage = "xmake dslings [options] [arguments]",
+                description = "exercises-code compile-time & runtime checker",
+                options = {
+                    {'s', "start_target", "kv", "0.dslings-0", "check from start_target"},
+                }
             })
