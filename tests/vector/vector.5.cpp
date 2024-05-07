@@ -24,7 +24,7 @@ int main() {
     d2ds_assert(OQ + QP == OP);
     d2ds_assert(OP - OQ == QP);
 
-    //D2DS_WAIT
+    D2DS_WAIT
 
     return 0;
 }

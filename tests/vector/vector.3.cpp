@@ -35,6 +35,8 @@ int main() {
         d2ds_assert_eq(intArr2.capacity(), 0);
     }
 
+    D2DS_RETURN
+
     { // push_back
         d2ds::Vector<int> intArr;
         intArr.push_back(1); d2ds_assert_eq(intArr[0], 1);
@@ -45,6 +47,8 @@ int main() {
         d2ds_assert_eq(intArr.capacity(), 4);
         d2ds_assert_eq(intArr[1], 2);
     }
+
+    D2DS_RETURN
 
     { // pop_back
         d2ds::Vector<int> intArr = { 1, 2, 3, 4 };
@@ -57,7 +61,7 @@ int main() {
         d2ds_assert_eq(intArr.capacity(), 4);
     }
 
-    //D2DS_WAIT
+    D2DS_WAIT
 
     return 0;
 }
