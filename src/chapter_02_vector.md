@@ -13,8 +13,7 @@
   - 常用函数和数据访问
   - 数据增删和扩容机制 - resize
   - 迭代器支持 - 范围for
-  - 功能扩展1 - 自定义扩容规则
-  - 功能扩展2 - 向量加法
+  - 功能扩展 - 向量加减法
 - 总结
 
 ---
@@ -329,9 +328,237 @@ private:
 }
 ```
 
+这里需要先说明一下, 扩容(缩容)机制通常是包含两个概念或步骤:
+
+- 第一个是, 扩容(缩容)的条件, 也是执行实际操作的时机。通常扩容发生再数据增加操作, 缩容发生数据删除操作中
+- 第二个是, 具体的扩容(缩容)规则。最简单的就是二倍扩容(缩容)
+
+> 注: 成员变量的变动, 意味着对应的**BigFive**也需要修改
+
 **push_back 和 扩容**
+
+在每次扩容的时候, 可以选择基于当前容量的二倍进行扩容。例如: 当`mCapacity_e`等于4时, 做扩容时应该分配可以容纳8个元素的内存
+
+```cpp
+d2ds::Vector<int> intArr = {0, 1, 2, 3};
+intArr.push_back(4);
+/*
+old: mCapacity_e == 4, mSize_e == 4
+              +---------------+
+mDataPtr_e -> | 0 | 1 | 2 | 3 |
+              +---------------+
+new: mCapacity_e == 8, mSize_e == 5
+              +-------------------------------+
+mDataPtr_e -> | 0 | 1 | 2 | 3 | 4 |   |   |   |
+              +-------------------------------+
+*/
+```
+
+什么时候扩容? 最直观的是增加元素, 但容量又不够的时候。执行push_back时, 当`mSize_e + 1 > mCapacity_e`时就需要扩容来获取更大的空间用于新数据/元素的存放, 既是否扩容需要在存储新元素操作之前
+
+```cpp
+template <typename T, typename Alloc = DefaultAllocator>
+class Vector {
+public:
+    void push_back(const T &element) {
+        if (mSize_e + 1 > mCapacity_e) {
+            resize(mCapacity_e == 0 ? 2 : 2 * mCapacity_e);
+        }
+        new (mDataPtr_e + mSize_e) T(element);
+        mSize_e++;
+    }
+}
+```
 
 **pop_back 和 缩容**
 
+当数据量减少时, 同样需要释放过多的内存容量来避免内存浪费。这时就引入一个问题, 如果使用二倍原则, 是当数据结构中的真实数据量等于最大容量的1/2时进行重新分配吗? 考虑一下这样的场景:
+
+```cpp
+d2ds::Vector<int> intArr = { 1, 2, 3, 4 };
+for (int i = 0; i < 10; i++) {
+    intArr.push_back(i); // 触发扩容
+    // ...
+    intArr.pop_back(); // 触发缩容
+}
+```
+
+当频繁小数据量的增加和减少, 就会造成Vector内部不停的扩容和缩容操作, 这种现象也称为——**抖动**。
+
+为了近可能的避免这种情况, 在执行缩容之后也应该保留/缓存一部分未使用的内存空间, 用于后续可能的数据增加操作。即扩容或者缩容都要保证一定的空闲内存, 用于后续可能的操作。如: 下面就是1/3触发条件, 2倍(1/2)扩容机制的内存变化情况
+
+```cpp
+mCapacity_e == 8, mSize_e == 5
+              +-------------------------------+
+mDataPtr_e -> | 0 | 1 | 2 | 3 | 4 |   |   |   |
+              +-------------------------------+
+
+intArr.pop_back();
+
+mCapacity_e == 8, mSize_e == 4
+              +-------------------------------+
+mDataPtr_e -> | 0 | 1 | 2 | 3 |   |   |   |   |
+              +-------------------------------+
+
+intArr.pop_back();
+
+mCapacity_e == 8, mSize_e == 3
+              +-------------------------------+
+mDataPtr_e -> | 0 | 1 | 2 |   |   |   |   |   |
+              +-------------------------------+
+
+intArr.pop_back();
+
+mCapacity_e == 4, mSize_e == 2
+              +---------------+
+mDataPtr_e -> | 0 | 1 |   |   |
+              +---------------+
+```
+
+当`mSize_e <= mCapacity_e / 3`时就触发一次二倍扩容机制的执行, 把容量从8缩小一半到4, 此时实际存储的数据量`mSize_e == 2`。这里需要注意的是, 虽然`pop_back`不一定会释放Vector管理的内存, 但依然需要去调用被删除元素的析构函数去释放它额外管理的资源(如果存在)
+
+```cpp
+template <typename T, typename Alloc = DefaultAllocator>
+class Vector {
+public:
+    void pop_back() {
+        mSize_e--;
+        (mDataPtr_e + mSize_e)->~T();
+        if (mSize_e <= mCapacity_e / 3) {
+            resize(mCapacity_e / 2);
+        }
+    }
+}
+```
+
 **resize实现**
 
+对于resize的实现, 需要关注的核心点:
+
+- 新老内存的分配和释放
+- 老数据的迁移
+
+首先进行分配一块能存n个元素的内存块, 然后在对数据进行迁移, 最后释放老的内存块。在进行数据迁移的过程中, 如果使用拷贝语义则需要通过**显式调用**析构进行释放老的内存, 如果使用移动语语义则可以避免**在所管理元素对象内部的资源的频繁分配释放**。为了能呈现主要骨架但有不过于复杂, 下面只实现了`mSize_e <= n`的情况的简化版本
+
+```cpp
+template <typename T, typename Alloc = DefaultAllocator>
+class Vector {
+    void resize(int n) { // only mSize_e <= n
+        auto newDataPtr = n == 0 ? nullptr : static_cast<T *>(Alloc::allocate(n * sizeof(T)));
+
+        for (int i = 0; i < mSize_e; i++) {
+            new (newDataPtr + i) T(mDataPtr_e[i]);
+            (mDataPtr_e + i)->~T();
+        }
+
+        if (mDataPtr_e) {
+            // Note:
+            //  memory-size is mCapacity_e * sizeof(T) rather than mSize_e * sizeof(T)
+            Alloc::deallocate(mDataPtr_e, mCapacity_e * sizeof(T));
+        }
+
+        mCapacity_e = n;
+        mDataPtr_e = newDataPtr;
+    }
+}
+```
+
+### 迭代器支持
+
+由于Vector用于存储数据元素的内存是连续的, 所以可以使用原生指针作为数据访问的迭代器
+
+```cpp
+const d2ds::Vector<int> constIntArr = intArr;
+int sum = 0;
+for (auto &val : constIntArr) {
+    sum += val;
+}
+```
+
+为了让被`const`修饰的Vector, 可以正常使用迭代器访问数据, 所以可以再实现一套const版本的begin和end
+
+```cpp
+template <typename T, typename Alloc = DefaultAllocator>
+class Vector {
+public:
+    T * begin() {
+        return mDataPtr_e;
+    }
+
+    T * end() {
+        return mDataPtr_e + mSize_e;
+    }
+
+    const T * begin() const {
+        return mDataPtr_e;
+    }
+
+    const T * end() const {
+        return mDataPtr_e + mSize_e;
+    }
+};
+```
+
+### 功能扩展 - 向量加减法
+
+假设有如下**OQ**、**OP**、**QP**三个向量
+
+```cpp
+^
+|   * P(2, 4)
+|
+|       *Q(4, 1)
+*-------------->
+O(0, 0)
+```
+
+```cpp
+d2ds::Vector<int> OQ = { 4, 1 };
+d2ds::Vector<int> OP = { 2, 4 };
+d2ds::Vector<int> QP = { -2, 3 };  
+d2ds_assert(OQ + QP == OP);
+d2ds_assert(OP - OQ == QP);
+```
+
+下面通过重载`operator+`和`operator-`来扩展下Vector再向量中的应用。这里为了直观我们直接假设向量是2维的, 在运算符重载函数中分别再实现向量的加减算法即可。怎么支持N维向量? 想必你心中已有答案
+
+
+```cpp
+namespace d2ds {
+
+template <typename T>
+bool operator==(const Vector<T> &v1, const Vector<T> &v2) {
+    bool equal = v1.size() == v2.size;
+    if (equal) {
+        for (int i = 0; i < v1.size()) {
+            if (v1[i] != v2[i]) {
+                equal = false;
+                break;
+            }
+        }
+    }
+    return equal;
+}
+
+template <typename T>
+Vector<T> operator+(const Vector<T> &v1, const Vector<T> &v2) {
+    Vector<T> v(2);
+    v[0] = v1[0] + v2[0];
+    v[1] = v1[1] + v2[1];
+    return std::move(v);
+}
+
+template <typename T>
+Vector<T> operator-(const Vector<T> &v1, const Vector<T> &v2) {
+    Vector<T> v(2);
+    v[0] = v1[0] - v2[0];
+    v[1] = v1[1] - v2[1];
+    return std::move(v);
+}
+
+}
+```
+
+## 总结
+
+本章节先是对比了一下, 对变长数组有需求的场景下。使用Vector自动管理内存和手动管理内存的差异和优势。然后，介绍了需要动态分配内存的数据结构如何去支持用户自定义分配的方法; 以及在内部自动管理内存的扩容机制的核心原理和对应**二倍扩容机制**的简单实现; 最后, 介绍了一个对Vector进行在向量领域的扩展应用。当然, 为了能够在呈现出动态数组Vector的核心原理下, 但又不过于复杂和拘迂细节, 本章中并没有去实现同样很常用的一些功能如: erase、back、data等。**但我相信在你学习完本章内容后的此时此刻, 你已基本具备自己去实现他们的能力**

@@ -76,15 +76,27 @@ target("3.array-6")
 
 target("4.vector-0")
     set_kind("binary")
-    add_files("tests/array/vector.0.cpp")
+    add_files("tests/vector/vector.0.cpp")
 
 target("4.vector-1")
     set_kind("binary")
-    add_files("tests/array/vector.1.cpp")
+    add_files("tests/vector/vector.1.cpp")
 
 target("4.vector-2")
     set_kind("binary")
-    add_files("tests/array/vector.2.cpp")
+    add_files("tests/vector/vector.2.cpp")
+
+target("4.vector-3")
+    set_kind("binary")
+    add_files("tests/vector/vector.3.cpp")
+
+target("4.vector-4")
+    set_kind("binary")
+    add_files("tests/vector/vector.4.cpp")
+
+target("4.vector-5")
+    set_kind("binary")
+    add_files("tests/vector/vector.5.cpp")
 
 -- dslings: auto checker and update status for exercises
 task("dslings")

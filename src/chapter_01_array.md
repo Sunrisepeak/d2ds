@@ -312,11 +312,11 @@ public:
 template <typename T, unsigned int N>
 class Array {
 public:
-    int * begin() {
+    T * begin() {
         return mData_e;
     }
 
-    int * end() {
+    T * end() {
         return mData_e + N;
     }
 //...

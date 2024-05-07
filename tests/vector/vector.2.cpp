@@ -31,7 +31,7 @@ int main() {
     intArr3[0] = constIntArr3[1] * intArr3[2];
     d2ds_assert_eq(intArr3[0], 2 * -3);
 
-    D2DS_WAIT
+    //D2DS_WAIT
 
     return 0;
 }
