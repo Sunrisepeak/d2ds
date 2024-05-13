@@ -22,5 +22,7 @@ int main() {
     d2ds_assert_eq(intArr[2], intArr[-2]);
     d2ds_assert_eq(intArr[3], intArr[-1]);
 
+    D2DS_WAIT
+
     return 0;
 }

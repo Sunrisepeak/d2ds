@@ -20,23 +20,6 @@ int main() {
 
     d2ds::DefaultAllocator::debug() = false;
 
-    { // capacity
-        d2ds::Vector<int> intArr1 = {0, 1, 2, 3};
-        d2ds_assert_eq(intArr1.capacity(), 4);
-
-        d2ds::Vector<int> intArr2(10);
-        d2ds_assert_eq(intArr2.capacity(), 10);
-
-        d2ds::Vector<int> intArr3(intArr1);
-        d2ds_assert_eq(intArr1.capacity(), intArr3.capacity());
-
-        intArr3 = std::move(intArr2);
-        d2ds_assert_eq(intArr3.capacity(), 10);
-        d2ds_assert_eq(intArr2.capacity(), 0);
-    }
-
-    D2DS_RETURN
-
     { // push_back
         d2ds::Vector<int> intArr;
         intArr.push_back(1); d2ds_assert_eq(intArr[0], 1);

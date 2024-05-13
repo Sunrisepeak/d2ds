@@ -17,9 +17,9 @@ int main() {
 
     d2ds::DefaultAllocator::debug() = false;
 
-    d2ds::Vector<int> OQ = { 4, 1 };
-    d2ds::Vector<int> OP = { 2, 4 };
-    d2ds::Vector<int> QP = { -2, 3 };  
+    d2ds::Vector<int> OQ = { 4, 1, 1 };
+    d2ds::Vector<int> OP = { 2, 4, 4 };
+    d2ds::Vector<int> QP = { -2, 3, 3 };  
 
     d2ds_assert(OQ + QP == OP);
     d2ds_assert(OP - OQ == QP);

@@ -74,11 +74,31 @@ target("3.array-6")
     set_kind("binary")
     add_files("tests/array/array.6.cpp")
 
-target("4.vector-0")
+target("4.vector-0-0")
+    set_kind("binary")
+    add_files("tests/vector/vector.0.0.cpp")
+
+target("4.vector-0-1")
+    set_kind("binary")
+    add_files("tests/vector/vector.0.1.cpp")
+
+target("4.vector-0-all")
     set_kind("binary")
     add_files("tests/vector/vector.0.cpp")
 
-target("4.vector-1")
+target("4.vector-1-0")
+    set_kind("binary")
+    add_files("tests/vector/vector.1.0.cpp")
+
+target("4.vector-1-1")
+    set_kind("binary")
+    add_files("tests/vector/vector.1.1.cpp")
+
+target("4.vector-1-2")
+    set_kind("binary")
+    add_files("tests/vector/vector.1.2.cpp")
+
+target("4.vector-1-all")
     set_kind("binary")
     add_files("tests/vector/vector.1.cpp")
 
@@ -86,7 +106,11 @@ target("4.vector-2")
     set_kind("binary")
     add_files("tests/vector/vector.2.cpp")
 
-target("4.vector-3")
+target("4.vector-3-0")
+    set_kind("binary")
+    add_files("tests/vector/vector.3.0.cpp")
+
+target("4.vector-3-all")
     set_kind("binary")
     add_files("tests/vector/vector.3.cpp")
 
@@ -109,30 +133,37 @@ task("dslings")
         local checker_pass = false
         local start_target = option.get("start_target")
 
-        local dslings_checker_pass_config = {
-            ["0.dslings-0"]     = checker_pass,
-            ["0.dslings-1"]     = checker_pass,
-            ["0.dslings-2"]     = checker_pass,
-            ["1.template-0"]    = checker_pass,
-            ["1.template-1"]    = checker_pass,
-            ["1.template-2"]    = checker_pass,
-            ["2.range_for-0"]   = checker_pass,
-            ["2.range_for-1"]   = checker_pass,
-            ["2.range_for-2"]   = checker_pass,
-            ["2.range_for-3"]   = checker_pass,
-            ["3.array-0"]       = checker_pass,
-            ["3.array-1"]       = checker_pass,
-            ["3.array-2"]       = checker_pass,
-            ["3.array-3"]       = checker_pass,
-            ["3.array-4"]       = checker_pass,
-            ["3.array-5"]       = checker_pass,
-            ["3.array-6"]       = checker_pass,
-            ["4.vector-0"]      = checker_pass,
-            ["4.vector-1"]      = checker_pass,
-            ["4.vector-2"]      = checker_pass,
-            ["4.vector-3"]      = checker_pass,
-            ["4.vector-4"]      = checker_pass,
-            ["4.vector-5"]      = checker_pass,
+        -- TODO: optimze
+        local target_to_code_file = {
+            ["0.dslings-0"]     = "exercises/dslings.hpp",
+            ["0.dslings-1"]     = "exercises/dslings.hpp",
+            ["0.dslings-2"]     = "exercises/dslings.hpp",
+            ["1.template-0"]    = "exercises/other/cpp-base/Template.hpp",
+            ["1.template-1"]    = "exercises/other/cpp-base/Template.hpp",
+            ["1.template-2"]    = "exercises/other/cpp-base/Template.hpp",
+            ["2.range_for-0"]   = "exercises/other/cpp-base/RangeFor.hpp",
+            ["2.range_for-1"]   = "exercises/other/cpp-base/RangeFor.hpp",
+            ["2.range_for-2"]   = "exercises/other/cpp-base/RangeFor.hpp",
+            ["2.range_for-3"]   = "exercises/other/cpp-base/RangeFor.hpp",
+            ["3.array-0"]       = "exercises/array/Array.hpp",
+            ["3.array-1"]       = "exercises/array/Array.hpp",
+            ["3.array-2"]       = "exercises/array/Array.hpp",
+            ["3.array-3"]       = "exercises/array/Array.hpp",
+            ["3.array-4"]       = "exercises/array/Array.hpp",
+            ["3.array-5"]       = "exercises/array/Array.hpp",
+            ["3.array-6"]       = "exercises/array/Array.hpp",
+            ["4.vector-0-0"]      = "exercises/array/Vector.hpp",
+            ["4.vector-0-1"]      = "exercises/array/Vector.hpp",
+            ["4.vector-0-all"]      = "exercises/array/Vector.hpp",
+            ["4.vector-1-0"]      = "exercises/array/Vector.hpp",
+            ["4.vector-1-1"]      = "exercises/array/Vector.hpp",
+            ["4.vector-1-2"]      = "exercises/array/Vector.hpp",
+            ["4.vector-1-all"]      = "exercises/array/Vector.hpp",
+            ["4.vector-2"]      = "exercises/array/Vector.hpp",
+            ["4.vector-3-0"]      = "exercises/array/Vector.hpp",
+            ["4.vector-3-all"]      = "exercises/array/Vector.hpp",
+            ["4.vector-4"]      = "exercises/array/Vector.hpp",
+            ["4.vector-5"]      = "exercises/array/Vector.hpp",
         }
 
         local function get_len(pairs_type)
@@ -223,45 +254,51 @@ task("dslings")
                     local sleep_sec = 1000 * 0.1
                     local output = ""
 
-                    while not build_success do
-                        --build_success = task.run("build", {target = name})
-                        build_success = true
-                        try
-                        {
-                            function()
-                                os.iorunv("xmake", {"build", name})
-                                --os.iorunv("xmake", {"build", "-v", name})
-                            end,
-                            catch
-                            {
-                                -- After an exception occurs, it is executed
-                                function (e)
-                                    output = e
-                                    build_success = false
-                                end
-                            }
-                        }
+                    local file_modify_time
+                    local compile_bypass_counter = 0
 
-                        if build_success then
-                            try {
-                                function () 
-                                    output, _ = os.iorunv("xmake", {"r", name})
+                    while not build_success do
+                        local curr_file_mtime = os.mtime(file)
+                        if target_to_code_file[name] then
+                            curr_file_mtime = curr_file_mtime + os.mtime(target_to_code_file[name])
+                        end
+
+                        if file_modify_time ~= curr_file_mtime then
+                            --build_success = task.run("build", {target = name})
+                            build_success = true
+                            try
+                            {
+                                function()
+                                    os.iorunv("xmake", {"build", name})
+                                    --os.iorunv("xmake", {"build", "-v", name})
                                 end,
                                 catch
                                 {
+                                    -- After an exception occurs, it is executed
                                     function (e)
                                         output = e
                                         build_success = false
                                     end
                                 }
                             }
-                        end
 
-                        local status = build_success
+                            if build_success then
+                                try {
+                                    function () 
+                                        output, _ = os.iorunv("xmake", {"r", name})
+                                    end,
+                                    catch
+                                    {
+                                        function (e)
+                                            output = e
+                                            build_success = false
+                                        end
+                                    }
+                                }
+                            end
 
-                        if dslings_checker_pass_config[name] == true then
-                            build_success = true
-                        else
+                            local status = build_success
+
                             if type(output) == "string" then
                                 if string.find(output, "❌") then
                                     status = false
@@ -270,16 +307,24 @@ task("dslings")
                                     build_success = false
                                 end
                             end
-                        end
 
-                        if build_success then
-                            built_targets = built_targets + 1
+                            if build_success then
+                                built_targets = built_targets + 1
+                            else
+                                sleep_sec = 1000 * 1
+                            end
+
+                            print_info(name, built_targets, total_targets, relative_path, output, status)
+                            output = ""
                         else
-                            sleep_sec = 1000 * 3
+                            compile_bypass_counter = compile_bypass_counter + 1
                         end
 
-                        print_info(name, built_targets, total_targets, relative_path, output, status)
-                        output = ""
+                        file_modify_time = curr_file_mtime
+                        if compile_bypass_counter > 20 then
+                            compile_bypass_counter = 0
+                            file_modify_time = nil
+                        end
                         os.sleep(sleep_sec)
 
                     end

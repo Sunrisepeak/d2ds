@@ -27,5 +27,7 @@ int main() {
     ++begin;
     d2ds_assert_eq(*begin, 1);
 
+    D2DS_WAIT
+
     return 0;
 }

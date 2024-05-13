@@ -7,6 +7,8 @@
 #include <cassert>
 #include <thread>
 
+#include <dstruct.hpp>
+
 #define HONLY_LOGGER_TAG "D2DS"
 #include "common/honly_logger.hpp"
 #include "common/dslings_config.hpp"
@@ -32,8 +34,8 @@
     } \
 }
 
-#define D2DS_WAIT HONLY_LOGW("Delete the D2DS_WAIT to continue...");
-#define D2DS_RETURN HONLY_LOGW("Delete the D2DS_RETURN to continue..."); return 0;
+#define D2DS_WAIT HONLY_LOGW("🥳 Delete the D2DS_WAIT to continue...");
+#define D2DS_RETURN HONLY_LOGW("🥳 Delete the D2DS_RETURN to continue..."); return 0;
 
 #define D2DS_SELF_ASSIGNMENT_CHECKER if (this == &dsObj) return *this;
 
@@ -41,19 +43,29 @@ namespace d2ds {
 
 struct DefaultAllocator {
 
+    using Address = unsigned long long;
+
     static void * allocate(int bytes) {
         allocate_counter()++;
         if (debug())
             HONLY_LOGI("DefaultAllocator: try to allocate %d bytes", bytes);
-        return malloc(bytes);
+        void *memPtr = malloc(bytes);
+        memory_addr_flag_d()[(Address)memPtr] = true;
+        return memPtr;
     }
 
     static void deallocate(void *addr, int bytes) {
         deallocate_counter()++;
         if (debug())
             HONLY_LOGI("DefaultAllocator: free addr %p, bytes %d", addr, bytes);
-        assert(addr != nullptr);
-        free(addr);
+        if (addr == nullptr) {
+            HONLY_LOGE("free null pointer");
+        } else if (memory_addr_flag_d()[(Address)addr] == false) {
+            HONLY_LOGE("double free - %p", addr);
+        } else {
+            memory_addr_flag_d()[(Address)addr] = false;
+            free(addr);
+        }
     }
 
 public: // config & status
@@ -75,6 +87,12 @@ public: // config & status
     static void clear_status() {
         allocate_counter() = 0;
         deallocate_counter() = 0;
+    }
+
+protected:
+    static dstruct::Map<Address, bool> & memory_addr_flag_d() {
+        static dstruct::Map<Address, bool> memAddrFlag;
+        return memAddrFlag;
     }
 
 };
@@ -146,23 +164,23 @@ public: // checker
     }
 
 public:
-    static bool copy_constructor_pass() {
+    static void copy_constructor_pass() {
         get_test_data_e().mCopyConstructor = true;
     }
 
-    static bool copy_assignment_pass() {
+    static void copy_assignment_pass() {
         get_test_data_e().mCopyAssignment = true;
     }
 
-    static bool move_constructor_pass() {
+    static void move_constructor_pass() {
         get_test_data_e().mMoveConstructor = true;
     }
 
-    static bool move_assignment_pass() {
+    static void move_assignment_pass() {
         get_test_data_e().mMoveAssignment = true;
     }
 
-    static bool self_assignment_pass() {
+    static void self_assignment_pass() {
         get_test_data_e().mSelfAssignment = true;
     }
 

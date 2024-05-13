@@ -1,10 +1,15 @@
-// vector.0.cpp - readonly
+// vector.1.cpp - readonly
 //
 // 描述:
-//  Vector的不同初始化方式
+//  Vector自定义分配器支持
+//
+//      struct AllocatorInterface {
+//          static void * allocate(int bytes);
+//          static void deallocate(void *addr, int bytes);
+//      };
 //
 // 目标/要求:
-//  - 实现 默认初始化、指定长度初始化、列表初始化 对应的构造函数
+//  - 开发者能使用默认分配器, 也可以通过模板的第二个参数配置自定义的分配器
 //  - 在exercises/array/Vector.hpp中完成你的代码设计
 //  - 通过编译器检测
 //
@@ -39,19 +44,21 @@ struct StackMemAllocator {
 char * StackMemAllocator::mTop = nullptr;
 char * StackMemAllocator::mMemory = nullptr;
 
-
 int main() {
-
-    d2ds::DefaultAllocator::debug() = true;
 
     char stackMemory[1024];
     StackMemAllocator::config_and_init(stackMemory, 1024);
 
-    d2ds::Vector<int, d2ds::DefaultAllocator> intVec;
-    d2ds::Vector<char, StackMemAllocator> charVecByStack(10);
-    d2ds::Vector<double> doubleVec = { 1.1, 2.2, 3.3 };
+    {
+        int *intPtr = (int *) StackMemAllocator::allocate(sizeof(4));
+        *intPtr = 1010;
+        std::cout << intPtr << ": " << *intPtr << std::endl;
+        StackMemAllocator::deallocate(intPtr, sizeof(intPtr));
+    }
 
-    d2ds_assert_eq(d2ds::DefaultAllocator::allocate_counter(), 1);
+    d2ds::Vector<int, d2ds::DefaultAllocator> intVec;
+    d2ds::Vector<char, StackMemAllocator> charVecByStack;
+    d2ds::Vector<double> doubleVec;
 
     D2DS_WAIT
 

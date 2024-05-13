@@ -528,9 +528,9 @@ namespace d2ds {
 
 template <typename T>
 bool operator==(const Vector<T> &v1, const Vector<T> &v2) {
-    bool equal = v1.size() == v2.size;
+    bool equal = v1.size() == v2.size();
     if (equal) {
-        for (int i = 0; i < v1.size()) {
+        for (int i = 0; i < v1.size(); i++) {
             if (v1[i] != v2[i]) {
                 equal = false;
                 break;

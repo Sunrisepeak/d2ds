@@ -22,5 +22,7 @@ int main() {
 
     d2ds_assert_eq(4, intArr.back());
 
+    D2DS_WAIT
+
     return 0;
 }

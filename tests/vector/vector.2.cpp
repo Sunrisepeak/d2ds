@@ -4,7 +4,7 @@
 //  数据结构Vector的常用函数和数据访问
 //
 // 目标/要求:
-//  - 实现Vector的push/pop
+//  - 实现Vector的empty/size/operator[]
 //  - 在exercises/array/Vector.hpp中完成你的代码设计
 //  - 通过编译器检测
 //

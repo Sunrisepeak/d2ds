@@ -27,5 +27,7 @@ int main() {
     mVal.set(100);
     d2ds_assert_eq(mVal.get(), 100);
 
+    D2DS_WAIT
+
     return 0;
 }

@@ -21,5 +21,7 @@ int main() {
 
     d2ds_assert_eq(mVal.get(), 2);
 
+    D2DS_WAIT
+
     return 0;
 }

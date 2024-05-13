@@ -13,6 +13,6 @@
 #define HONLY_LOGI(...) { fprintf (stdout, "\033[32m[%s LOGI]: %s: %s:%d - ", HONLY_LOGGER_TAG, __func__, __FILE__, __LINE__); _HONLY_LOG(stdout, __VA_ARGS__); }
 #define HONLY_LOGD(...) { fprintf (stdout, "\033[37m[%s LOGD]: %s: %s:%d - ", HONLY_LOGGER_TAG, __func__, __FILE__, __LINE__); _HONLY_LOG(stdout, __VA_ARGS__); }
 #define HONLY_LOGW(...) { fprintf (stdout, "\033[33m[%s LOGW]: %s: %s:%d - ", HONLY_LOGGER_TAG, __func__, __FILE__, __LINE__); _HONLY_LOG(stdout, __VA_ARGS__); }
-#define HONLY_LOGE(...) { fprintf (stderr, "\033[31m[%s LOGE]: %s: %s:%d - ", HONLY_LOGGER_TAG, __func__, __FILE__, __LINE__); _HONLY_LOG(stderr, __VA_ARGS__); }
+#define HONLY_LOGE(...) { fprintf (stdout, "\033[31m[%s LOGE]: %s: %s:%d - ❌ | ", HONLY_LOGGER_TAG, __func__, __FILE__, __LINE__); _HONLY_LOG(stdout, __VA_ARGS__); }
 
 #endif
