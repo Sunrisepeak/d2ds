@@ -176,7 +176,7 @@ task("dslings")
 
         local function clear_screen()
             if os.host() == "windows" then
-                os.exec("cls")
+                os.exec("tools\\clear_screen.bat")
             else
                 os.exec("clear")
             end
