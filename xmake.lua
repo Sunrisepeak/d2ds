@@ -122,6 +122,18 @@ target("4.vector-5")
     set_kind("binary")
     add_files("tests/vector/vector.5.cpp")
 
+add_moduledirs("tools")
+
+task("d2ds")
+    on_run("d2ds")
+    set_menu {
+        usage = "xmake d2ds [command]",
+        description = "info | update | help",
+        options = {
+            {nil, "command", "v", nil, "d2ds's quick command"},
+        }
+    }
+
 -- dslings: auto checker and update status for exercises
 task("dslings")
     on_run(function()
@@ -343,10 +355,10 @@ Next: https://github.com/Sunrisepeak/dstruct\
         print_info("D2DS", total_targets, total_targets, "...", bingo, true)
 
     end)
-    set_menu({
-                usage = "xmake dslings [options] [arguments]",
-                description = "exercises-code compile-time & runtime checker",
-                options = {
-                    {'s', "start_target", "kv", "0.dslings-0", "check from start_target"},
-                }
-            })
+    set_menu{
+        usage = "xmake dslings [options] [arguments]",
+        description = "exercises-code compile-time & runtime checker",
+        options = {
+            {'s', "start_target", "kv", "0.dslings-0", "check from start_target"},
+        }
+    }
