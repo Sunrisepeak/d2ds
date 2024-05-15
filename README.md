@@ -1,6 +1,6 @@
-# 动手写数据结构 | d2ds (Dive into Data Structures) - WIP
+# 动手写数据结构 | d2ds - WIP
 
-强调**动手实践**的数据结构练习代码(d2ds-dslings)和书籍(d2ds-book)
+d2ds(Dive into Data Structures) - 强调**动手实践**的**数据结构练习代码和书籍**
 
 **推荐使用方式:** [d2ds-book](https://sunrisepeak.github.io/d2ds/) -> [d2ds-video](https://www.bilibili.com/video/BV1hD421T7sU) -> [d2ds-dslings](https://github.com/Sunrisepeak/d2ds/tree/main/exercises) -> [contributor]()
 
@@ -48,7 +48,8 @@ xmake dslings
 > - 执行命令前, 请确保电脑已经配置了C++环境, 并安装了[xmake](https://github.com/xmake-io/xmake)构建工具
 >
 > - 建议使用vscode作为代码练习的编辑器, 用**ctrl+鼠标左键**点击路径就可以自动转跳到目标位置
-> 
+>
+> - 由于vscode的C/C++插件会检测文件变化, 可以参考[issue-5](https://github.com/Sunrisepeak/d2ds/issues/5)来避免卡顿
 
 #### 第二步: 根据dslings提示, 找到对应的练习代码
 
@@ -162,7 +163,7 @@ int main() {
 
 ## 其他工具
 
-#### xmake dslings
+### xmake dslings
 
 从指定练习开始检测, 支持模糊匹配
 
@@ -171,7 +172,7 @@ xmake dslings -s [target]
 #xmake dslings -s vector
 ```
 
-#### xmake d2ds
+### xmake d2ds
 
 查看版本信息
 
