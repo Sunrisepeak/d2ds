@@ -1,14 +1,17 @@
-# 动手写数据结构(d2ds)
+# 动手写数据结构 | d2ds - WIP
 
-强调**动手实践**的数据结构开源[书 + 代码]
+d2ds(Dive into Data Structures) - 强调**动手实践**的**数据结构练习代码和书籍**
 
-## 文档/书籍
+**推荐使用方式:** [d2ds-book](https://sunrisepeak.github.io/d2ds/) -> [d2ds-video](https://www.bilibili.com/video/BV1hD421T7sU) -> [d2ds-dslings](https://github.com/Sunrisepeak/d2ds/tree/main/exercises) -> [contributor]()
+
+
+## d2ds-book | 书籍/材料
 
 [在线阅读](https://sunrisepeak.github.io/d2ds/)
 
-## 代码练习
+## d2ds-dslings | 代码练习
 
-用dslings的**编译器驱动开发模式**来进行代码练习
+通过使用dslings自动化检测的**编译器驱动开发模式**来进行代码练习
 
 ### 代码下载
 
@@ -18,15 +21,14 @@ git clone --recursive git@github.com:Sunrisepeak/d2ds.git
 
 ### 安装xmake
 
-```bash
-sudo add-apt-repository ppa:xmake-io/xmake
-sudo apt-get update
-sudo apt-get install g++ gdb xmake make -y
-```
+- [安装及简介-文章](https://github.com/Sunrisepeak/HelloWorld/tree/main/tools/xmake)
+- [安装及简介-视频](https://www.bilibili.com/video/BV1EK421h7G7/?spm_id_from=333.999.0.0&vd_source=eac75885a69b523024571c4df766896f)
 
-> 注: 其他系统xmake安装见[xmake仓库](https://github.com/xmake-io/xmake)
+> **注: 使用dslings并不需要掌握xmake, 有xmake环境即可**
 
-### dslings自动检测
+### dslings使用流程
+
+#### 第一步: 开启代码检测
 
 在本地[d2ds仓库](https://github.com/Sunrisepeak/d2ds)的根目录执行如下命令
 
@@ -34,19 +36,25 @@ sudo apt-get install g++ gdb xmake make -y
 xmake dslings
 ```
 
-程序就开始自动的测试/校验, 直到一个没有完成(或错误的)练习代码, 并给出对应的练习位置以及相关的错误信息提示
+程序开始自动的测试/校验, 直到一个没有完成(或检测不通过)的练习代码。dslings会在控制台输出提示信息。如:
+
+- 练习进度
+- 练习的代码路径信息
+- 编译期错误信息提示
+- 运行时错误提示
 
 > **注**
 > 
 > - 执行命令前, 请确保电脑已经配置了C++环境, 并安装了[xmake](https://github.com/xmake-io/xmake)构建工具
 >
-> - 强烈建议使用vscode作为代码练习的编辑器, 这样dslings在控制台给出的练习代码路径, 只需要用**ctrl+鼠标左键**点击就可以自动转跳到目标位置
-> 
+> - 建议使用vscode作为代码练习的编辑器, 用**ctrl+鼠标左键**点击路径就可以自动转跳到目标位置
+>
+> - 由于vscode的C/C++插件会检测文件变化, 可以参考[issue-5](https://github.com/Sunrisepeak/d2ds/issues/5)来避免卡顿
 
-### 错误提示
+#### 第二步: 根据dslings提示, 找到对应的练习代码
 
-```text
-🌏Progress: [>-----] 0/5
+```bash
+🌏Progress: [>-----------------------------] 0/29
 
 [Target: 0.dslings-0]
 
@@ -56,26 +64,26 @@ xmake dslings
 
 Output:
 ====================
-[ 25%]: cache compiling.release tests/dslings.0.cpp
+[ 50%]: cache compiling.release tests/dslings.0.cpp
 error: tests/dslings.0.cpp:20:11: error: ‘MaxValue’ is not a member of ‘d2ds’
    20 |     d2ds::MaxValue mVal(2);
       |           ^~~~~~~~
-In file included from /usr/include/c++/11/cassert:44,
-                 from ./tests/common.hpp:6,
-                 from tests/dslings.0.cpp:14:
-tests/dslings.0.cpp:22:12: error: ‘mVal’ was not declared in this scope
+In file included from tests/dslings.0.cpp:14:
+tests/dslings.0.cpp:22:20: error: ‘mVal’ was not declared in this scope
    22 |     d2ds_assert_eq(mVal.get(), 2);
-      |            ^~~~
+      |                    ^~~~
+./common/common.hpp:28:9: note: in definition of macro ‘d2ds_assert_eq’
+   28 |     if (a != b) {\
+      |         ^
   > in tests/dslings.0.cpp
 
 
 ====================
 
-Book: https://sunrisepeak.github.io/d2ds
+Homepage: https://github.com/Sunrisepeak/d2ds-courses
 ```
 
-执行命令后dslings程序会停在最近的未完成的练习, 并会"实时"检测和这个练习相关的数据结构代码的实现。
-我们可以根据dslings在控制台的输出找到对应的练习代码:
+执行命令后dslings程序会停在最近的未完成的练习, 并会"实时"检测和这个练习相关的数据结构代码的实现。我们可以根据dslings在控制台的输出找到对应的练习代码:
 
 ```cpp
 // dslings.0.cpp - readonly
@@ -101,16 +109,20 @@ int main() {
 
     d2ds_assert_eq(mVal.get(), 2);
 
+    HONLY_LOGI_P("Hello D2DS!");
+
+    D2DS_WAIT
+
     return 0;
 }
 ```
 
-根据对应的练习代码中给的描述和要求完成该练习, 过程中可以结合dslings在控制台的提示来进行相关数据结构练习的代码设计。当正确完成代码后, dslings就会更新控制的输出给出对应的提示。
+#### 第三步: 阅读练习描述和要求并完成练习
 
-### 代码通过提示
+根据对应的练习代码中给的描述和要求完成该练习, 过程中可以结合dslings在控制台的提示来进行相关数据结构练习的代码设计。当正确完成代码后, dslings就会更新控制的输出给出对应的提示
 
-```text
-🌏Progress: [=>----] 1/5
+```bash
+🌏Progress: [>-----------------------------] 0/29
 
 [Target: 0.dslings-0]
 
@@ -120,13 +132,66 @@ int main() {
 
 Output:
 ====================
+[D2DS LOGI]: - ✅ | mVal.get() == 2 (2 == 2)
+[D2DS LOGI]: - Hello D2DS!
+[D2DS LOGW]: main: tests/dslings.0.cpp:26 - 🥳 Delete the D2DS_WAIT to continue...
 
 ====================
 
-Book: https://sunrisepeak.github.io/d2ds
+Homepage: https://github.com/Sunrisepeak/d2ds-courses
+```
 
+#### 第四步: 注释D2DS_WAIT, 进入下一个练习
+
+根据dslings在控制台的提示信息, 找到`tests/dslings.0.cpp:26`, 并进行注释或者删除。
+dslings就会进入下一个练习并进行检测
+
+```bash
+int main() {
+
+    d2ds::MaxValue mVal(2);
+
+    d2ds_assert_eq(mVal.get(), 2);
+
+    HONLY_LOGI_P("Hello D2DS!");
+
+    //D2DS_WAIT
+
+    return 0;
+}
+```
+
+## 其他工具
+
+### xmake dslings
+
+从指定练习开始检测, 支持模糊匹配
+
+```bash
+xmake dslings -s [target]
+#xmake dslings -s vector
+```
+
+### xmake d2ds
+
+查看版本信息
+
+```bash
+xmake d2ds info
+```
+
+查看工具使用
+
+```bash
+xmake d2ds help
+```
+
+同步(主仓库)最新代码
+
+```bash
+xmake d2ds update
 ```
 
 ---
 
-[开源课程](https://github.com/Sunrisepeak/d2ds-courses) | [DStruct开源库](https://github.com/Sunrisepeak/DStruct)
+[项目主页](https://sunrisepeak.github.io/d2ds-courses/) | [ShowYourCode](https://github.com/Sunrisepeak/d2ds-courses/tree/main/show-your-code) | [dstruct开源库](https://github.com/Sunrisepeak/DStruct)
