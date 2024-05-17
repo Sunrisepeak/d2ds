@@ -21,10 +21,21 @@ git clone --recursive git@github.com:Sunrisepeak/d2ds.git
 
 ### 安装xmake
 
-- [安装及简介-文章](https://github.com/Sunrisepeak/HelloWorld/tree/main/tools/xmake)
-- [安装及简介-视频](https://www.bilibili.com/video/BV1EK421h7G7/?spm_id_from=333.999.0.0&vd_source=eac75885a69b523024571c4df766896f)
+**linux/macos**
 
-> **注: 使用dslings并不需要掌握xmake, 有xmake环境即可**
+> 使用bash执行tools目录下的安装脚本
+
+```bash
+bash tools/install.unix.sh
+```
+
+**windows**
+
+> 执行tools目录下的安装脚本 或 直接双击运行
+
+```bash
+tools\install.win.bat
+```
 
 ### dslings使用流程
 
