@@ -122,6 +122,26 @@ target("4.vector-5")
     set_kind("binary")
     add_files("tests/vector/vector.5.cpp")
 
+target("5.embedded-slist-0")
+    set_kind("binary")
+    add_files("tests/embedded-list/embedded-slist.0.cpp")
+
+target("5.embedded-slist-1")
+    set_kind("binary")
+    add_files("tests/embedded-list/embedded-slist.1.cpp")
+
+target("5.embedded-slist-2")
+    set_kind("binary")
+    add_files("tests/embedded-list/embedded-slist.2.cpp")
+
+target("5.embedded-slist-3")
+    set_kind("binary")
+    add_files("tests/embedded-list/embedded-slist.3.cpp")
+
+target("5.embedded-slist-4")
+    set_kind("binary")
+    add_files("tests/embedded-list/embedded-slist.4.cpp")
+
 add_moduledirs("tools")
 
 task("d2ds")
@@ -176,6 +196,11 @@ task("dslings")
             ["4.vector-3-all"]      = "exercises/array/Vector.hpp",
             ["4.vector-4"]      = "exercises/array/Vector.hpp",
             ["4.vector-5"]      = "exercises/array/Vector.hpp",
+            ["5.embedded-slist-0"]      = "exercises/linked-list/EmbeddedList.hpp",
+            ["5.embedded-slist-1"]      = "exercises/linked-list/EmbeddedList.hpp",
+            ["5.embedded-slist-2"]      = "exercises/linked-list/EmbeddedList.hpp",
+            ["5.embedded-slist-3"]      = "exercises/linked-list/EmbeddedList.hpp",
+            ["5.embedded-slist-4"]      = "exercises/linked-list/EmbeddedList.hpp",
         }
 
         local function get_len(pairs_type)

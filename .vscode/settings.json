@@ -3,5 +3,28 @@
         "**/.vscode": true,
         "**/build": true,
         "/.xmake": true
+    },
+    "files.associations": {
+        "array": "cpp",
+        "string": "cpp",
+        "string_view": "cpp",
+        "deque": "cpp",
+        "list": "cpp",
+        "*.tcc": "cpp",
+        "hash_map": "cpp",
+        "unordered_map": "cpp",
+        "vector": "cpp",
+        "functional": "cpp",
+        "optional": "cpp",
+        "ratio": "cpp",
+        "system_error": "cpp",
+        "tuple": "cpp",
+        "type_traits": "cpp",
+        "utility": "cpp",
+        "istream": "cpp",
+        "ostream": "cpp",
+        "chrono": "cpp",
+        "compare": "cpp",
+        "cstddef": "cpp"
     }
 }
