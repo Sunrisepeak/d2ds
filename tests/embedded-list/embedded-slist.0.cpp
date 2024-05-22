@@ -17,7 +17,7 @@ int main() {
 
     d2ds_assert_eq(sizeof(d2ds::SinglyLink), 8);
 
-    //D2DS_WAIT
+    D2DS_WAIT
 
     return 0;
 }
