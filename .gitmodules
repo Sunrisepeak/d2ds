@@ -1,3 +1,7 @@
-[submodule "DStruct"]
-	path = DStruct
+[submodule "dstruct"]
+	path = dstruct
 	url = https://github.com/Sunrisepeak/DStruct
+
+[submodule "courses"]
+	path = courses
+	url = git@github.com:Sunrisepeak/d2ds-courses.git
