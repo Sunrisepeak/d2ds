@@ -12,8 +12,9 @@ d2ds(Dive into Data Structures) - 强调**动手实践**的**数据结构**学�
 
 | d2ds | 材料 | 视频 | 参考 | 备注 |
 | --- | --- | --- | --- | --- |
-| Array | [chapter1](http://127.0.0.1:3000/chapter_01_array.html) | video1 - video2 | Impl | |
-| Vector | chapter2 | video1 - video2 | Impl | | 
+| Array | [chapter1](http://127.0.0.1:3000/chapter_01_array.html) | [video1](https://www.bilibili.com/video/BV1hD421T7sU) - [video2](https://www.bilibili.com/video/BV16t421w7c2) | [dstruct::Array](https://github.com/Sunrisepeak/dstruct/blob/main/core/ds/array/Array.hpp) | [备用地址](https://zhuanlan.zhihu.com/p/693936490) |
+| Vector | [chapter2](http://127.0.0.1:3000/chapter_01_array.html) | [video1](https://www.bilibili.com/video/BV1K1421z7kt) - [video2](https://www.bilibili.com/video/BV1yb421B7ZG) | [dstruct::Vector](https://github.com/Sunrisepeak/dstruct/blob/main/core/ds/array/Vector.hpp) | [备用地址](https://zhuanlan.zhihu.com/p/696455403) |
+| SinglyLink | [chapter3](http://127.0.0.1:3000/chapter_04_embeddedlist.html) | [video1](https://www.bilibili.com/video/BV1ND421V7Wn) - [video2](https://www.bilibili.com/video/BV1ir421w71C) | [dstruct::SinglyLink](https://github.com/Sunrisepeak/dstruct/blob/main/core/ds/linked-list/EmbeddedList.hpp#L15) | [备用地址](https://zhuanlan.zhihu.com/p/699299313) |
 
 ## d2ds-dslings | 练习
 
@@ -45,40 +46,30 @@ tools\install.win.bat
 
 ### 执行dslings进入练习
 
+> 更多详情见[dslings使用指南](book/src/dslings.md)
+
 ```bash
 xmake dslings
 ```
 
-> 注: 更多详情见[dslings使用指南](book/src/dslings.md)
+## 社区 | 交流
 
-## 工具 | 快捷命令
+### ShowYourCode 2024
 
-### xmake dslings
+> 代码交流、分享、解读
 
-从指定练习开始检测, 支持模糊匹配
+| id | 练习代码 | 视频解读 | 文章解读 | 备注 |
+| --- | --- | --- | --- | --- |
+| Sunrisepeak | [d2ds-sunrisepeak](courses/show-your-code/2024) |  |  | 示例 |
 
-```bash
-# xmake dslings 默认从第一开始检测
-xmake dslings -s [target]
-#xmake dslings -s vector
-```
+### 交流渠道
 
-### xmake d2ds
+- **即时交流(QQ群):** 167535744
+- **论坛:** [github-discussions](https://github.com/Sunrisepeak/d2ds-courses/discussions)
+- **问题交流&反馈:** [github-issues](https://github.com/Sunrisepeak/d2ds-courses/issues)
 
-查看版本信息
+## 贡献方式 | 贡献
 
-```bash
-xmake d2ds info
-```
-
-查看工具使用
-
-```bash
-xmake d2ds help
-```
-
-同步(主仓库)最新代码
-
-```bash
-xmake d2ds update
-```
+- 参与社区交流: 反馈问题、参与社区问题讨论
+- 参与项目开发: 修复Bug、开发&优化新功能/模块
+- 参与项目的宣传和推广: 让更多的人能参与到项目的学习和建设当中, 以至于帮助到更多需要学习数据结构的同学

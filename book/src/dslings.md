@@ -160,3 +160,35 @@ int main() {
     return 0;
 }
 ```
+
+## 工具 | 快捷命令
+
+### xmake dslings
+
+从指定练习开始检测, 支持模糊匹配
+
+```bash
+# xmake dslings 默认从第一开始检测
+xmake dslings -s [target]
+#xmake dslings -s vector
+```
+
+### xmake d2ds
+
+查看版本信息
+
+```bash
+xmake d2ds info
+```
+
+查看工具使用
+
+```bash
+xmake d2ds help
+```
+
+同步(主仓库)最新代码
+
+```bash
+xmake d2ds update
+```
