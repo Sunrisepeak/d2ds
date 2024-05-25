@@ -54,13 +54,23 @@ xmake dslings
 
 ## 社区 | 交流
 
-### ShowYourCode 2024
+### ShowYourCode-2024
 
-> 代码交流、分享、解读
+> 代码分享、交流、解读
 
-| id | 练习代码 | 视频解读 | 文章解读 | 备注 |
+| id | 练习代码 | 视频解读 | 文章解读 | 交流 |
 | --- | --- | --- | --- | --- |
-| [Sunrisepeak](https://github.com/Sunrisepeak) | [d2ds-sunrisepeak](https://github.com/UnknownBugs/d2ds-sunrisepeak) |  |  | 示例 |
+| [Sunrisepeak](https://github.com/Sunrisepeak) | [d2ds-sunrisepeak](https://github.com/UnknownBugs/d2ds-sunrisepeak) |  |  | [discussion-pages](https://github.com/Sunrisepeak/d2ds/discussions/19) |
+
+**创建讨论页**
+
+在[d2ds论坛]创建一个你的ShowYourCode讨论页主版(用于后续表格中) - 格式见[ShowYourCode-2024 | Sunrisepeak 交流讨论页](https://github.com/Sunrisepeak/d2ds/discussions/19)
+
+**向本仓库发起PR**
+
+填写自己的相关链接到上述表格中, 并向本仓库发起PR
+
+**表格介绍**
 
 - **练习代码:** 包含自己练习代码实现的d2ds的fork仓库
 - **视频解读:** 对自己的代码实现的解读、做练习的过程等其他d2ds相关的代码分析
@@ -69,7 +79,7 @@ xmake dslings
 > 注:
 > 
 > - 关于链接: 视频/文章解读, 最好是视频合集/专栏的链接, 或者是一个目录页链接
-> - 费曼学习法: 在学习练习之后, 在尝试把自己学到的内容进行分享给他人, 在尽力让其他人听懂的过程中, 促使自己更加深入的理解
+> - 费曼学习法: 学习练习之后, 尝试把自己学到的内容进行分享给他人, 在尽力让其他人听懂的过程中, 促使自己更加深入的理解
 
 ### 交流渠道
 
