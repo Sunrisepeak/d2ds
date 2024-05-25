@@ -3,6 +3,7 @@
 # 阅读准备
 - [导读](./Instroduction.md)
 - [资源](./Resources.md)
+- [环境配置](./dslings.md)
 
 # 常用数据结构
 - [数组](0_array.md)
