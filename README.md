@@ -4,7 +4,6 @@ d2ds(Dive into Data Structures) - 强调**动手实践**的**数据结构**学�
 
 | [项目主页](https://sunrisepeak.github.io/d2ds-courses) |
 | ------------------------------------------------------------ |
-| 阅读 - 练习 - 讨论 - 贡献 |
 | [d2ds-book](https://sunrisepeak.github.io/d2ds) - [d2ds-courses](https://sunrisepeak.github.io/d2ds-courses) - [d2ds-dslings](dslings) - [dstruct](https://github.com/Sunrisepeak/dstruct) |
 
 ---
