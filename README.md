@@ -20,7 +20,7 @@ d2ds(Dive into Data Structures) - 强调**动手实践**的**数据结构**学�
 
 通过使用dslings自动化检测的**编译器驱动开发模式**来进行代码练习
 
-### 代码下载
+[环境配置&使用指南](book/src/dslings.md)
 
 ```bash
 git clone --recursive git@github.com:Sunrisepeak/d2ds.git
