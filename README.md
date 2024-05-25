@@ -2,8 +2,9 @@
 
 d2ds(Dive into Data Structures) - 强调**动手实践**的**数据结构**学习项目，其中包含**在线书籍、公开课、练习代码**等子项目
 
-| 阅读 - 练习 - 讨论 - 贡献 |
+| [项目主页](https://sunrisepeak.github.io/d2ds-courses) |
 | ------------------------------------------------------------ |
+| 阅读 - 练习 - 讨论 - 贡献 |
 | [d2ds-book](https://sunrisepeak.github.io/d2ds) - [d2ds-courses](https://sunrisepeak.github.io/d2ds-courses) - [d2ds-dslings](dslings) - [dstruct](https://github.com/Sunrisepeak/dstruct) |
 
 ---
@@ -64,7 +65,7 @@ xmake dslings
 
 **创建讨论页**
 
-在[d2ds论坛]创建一个你的ShowYourCode讨论页主版(用于后续表格中) - 格式见[ShowYourCode-2024 | Sunrisepeak 交流讨论页](https://github.com/Sunrisepeak/d2ds/discussions/19)
+在[d2ds论坛](https://github.com/Sunrisepeak/d2ds/discussions)创建一个你的ShowYourCode讨论/交流页主版(用于后续表格中) - 格式见[ShowYourCode-2024 | Sunrisepeak 交流讨论页](https://github.com/Sunrisepeak/d2ds/discussions/19)
 
 **向本仓库发起PR**
 
