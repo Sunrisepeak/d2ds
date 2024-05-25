@@ -1,11 +1,10 @@
 # 动手写数据结构 | d2ds - WIP
 
-d2ds(Dive into Data Structures) - 强调**动手实践**的**数据结构**项目
+d2ds(Dive into Data Structures) - 强调**动手实践**的**数据结构**学习项目，其中包含**在线书籍、公开课、练习代码**等子项目
 
-- [**d2ds-book**](https://sunrisepeak.github.io/d2ds) : d2ds在线书籍
-- [**d2ds-courses**](https://sunrisepeak.github.io/d2ds-courses) : d2ds公开课
-- [**d2ds-dslings**](dslings) : d2ds代码练习
-- [**dstruct**](https://github.com/Sunrisepeak/dstruct) : 数据结构库开发
+| 学习 - 练习 - 讨论 - 贡献 |
+| ------------------------------------------------------------ |
+| [d2ds-book](https://sunrisepeak.github.io/d2ds) - [d2ds-courses](https://sunrisepeak.github.io/d2ds-courses) - [d2ds-dslings](dslings) - [dstruct](https://github.com/Sunrisepeak/dstruct) |
 
 ---
 
