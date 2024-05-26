@@ -8,13 +8,22 @@ d2ds(Dive into Data Structures) - 强调**动手实践**的**数据结构**学�
 
 ---
 
+## 目标
+
+- **1. 任何人都可以在网上免费获取**
+- **2. 不仅强调原理, 更强调动手实践**
+- **3. 自动化的代码练习系统, 励志让每个使用者都能轻松从零实现一个数据结构**
+- **4. 强调共建共享, 让更多的人加入d2ds社区, 快速迭代和提升内容**
+- **5. 提供社区成员用于代码分享、技术交流、的论坛和群组**
+
+
 ## book & courses | 阅读
 
 | d2ds | 材料 | 视频 | 参考 | 备注 |
 | --- | --- | --- | --- | --- |
-| Array | [chapter1](http://127.0.0.1:3000/chapter_01_array.html) | [video1](https://www.bilibili.com/video/BV1hD421T7sU) - [video2](https://www.bilibili.com/video/BV16t421w7c2) | [dstruct::Array](https://github.com/Sunrisepeak/dstruct/blob/main/core/ds/array/Array.hpp) | [备用地址](https://zhuanlan.zhihu.com/p/693936490) |
-| Vector | [chapter2](http://127.0.0.1:3000/chapter_01_array.html) | [video1](https://www.bilibili.com/video/BV1K1421z7kt) - [video2](https://www.bilibili.com/video/BV1yb421B7ZG) | [dstruct::Vector](https://github.com/Sunrisepeak/dstruct/blob/main/core/ds/array/Vector.hpp) | [备用地址](https://zhuanlan.zhihu.com/p/696455403) |
-| SinglyLink | [chapter3](http://127.0.0.1:3000/chapter_04_embeddedlist.html) | [video1](https://www.bilibili.com/video/BV1ND421V7Wn) - [video2](https://www.bilibili.com/video/BV1ir421w71C) | [dstruct::SinglyLink](https://github.com/Sunrisepeak/dstruct/blob/main/core/ds/linked-list/EmbeddedList.hpp#L15) | [备用地址](https://zhuanlan.zhihu.com/p/699299313) |
+| Array | [chapter1](https://sunrisepeak.github.io/d2ds/chapter_01_array.html) | [video1](https://www.bilibili.com/video/BV1hD421T7sU) - [video2](https://www.bilibili.com/video/BV16t421w7c2) | [dstruct::Array](https://github.com/Sunrisepeak/dstruct/blob/main/core/ds/array/Array.hpp) | [备用地址](https://zhuanlan.zhihu.com/p/693936490) |
+| Vector | [chapter2](https://sunrisepeak.github.io/d2ds/chapter_01_array.html) | [video1](https://www.bilibili.com/video/BV1K1421z7kt) - [video2](https://www.bilibili.com/video/BV1yb421B7ZG) | [dstruct::Vector](https://github.com/Sunrisepeak/dstruct/blob/main/core/ds/array/Vector.hpp) | [备用地址](https://zhuanlan.zhihu.com/p/696455403) |
+| SinglyLink | [chapter3](https://sunrisepeak.github.io/d2ds/chapter_04_embeddedlist.html) | [video1](https://www.bilibili.com/video/BV1ND421V7Wn) - [video2](https://www.bilibili.com/video/BV1ir421w71C) | [dstruct::SinglyLink](https://github.com/Sunrisepeak/dstruct/blob/main/core/ds/linked-list/EmbeddedList.hpp#L15) | [备用地址](https://zhuanlan.zhihu.com/p/699299313) |
 
 ## d2ds-dslings | 练习
 
