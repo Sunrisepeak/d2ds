@@ -39,6 +39,7 @@ target_to_code_file = {
     ["5.embedded-slist-2"]      = "dslings/exercises/linked-list/EmbeddedList.hpp",
     ["5.embedded-slist-3"]      = "dslings/exercises/linked-list/EmbeddedList.hpp",
     ["5.embedded-slist-4"]      = "dslings/exercises/linked-list/EmbeddedList.hpp",
+    ["6.slinked-list-0"]      = "dslings/exercises/linked-list/SLinkedList.hpp",
 }
 
 function clear_screen()

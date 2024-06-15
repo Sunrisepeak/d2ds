@@ -45,6 +45,7 @@
         "ostream": "cpp",
         "chrono": "cpp",
         "compare": "cpp",
-        "cstddef": "cpp"
+        "cstddef": "cpp",
+        "initializer_list": "cpp"
     }
 }
