@@ -28,6 +28,7 @@ function sync_repo()
     print("start sync mian-repo...")
     os.exec(cmd)
     print("start update submodule...")
+    os.exec("git submodule init")
     os.exec("git submodule update")
 end
 
