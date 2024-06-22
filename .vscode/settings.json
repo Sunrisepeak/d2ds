@@ -1,4 +1,12 @@
 {
+
+    "C_Cpp.default.includePath": [
+        "${default}",
+        "${workspaceFolder}",
+        "${workspaceFolder}/dstruct",
+        "${workspaceFolder}/dslings",
+    ],
+
     "C_Cpp.files.exclude": {
         "**/.vscode": true,
         "**/build": true,
