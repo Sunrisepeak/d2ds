@@ -12,6 +12,18 @@
         "**/build": true,
         "/.xmake": true
     },
+
+    "files.encoding": "utf8",
+    "terminal.integrated.env.windows": {
+        "LANG": "en_US.UTF-8"
+    },
+    "terminal.integrated.env.linux": {
+        "LANG": "en_US.UTF-8"
+    },
+    "terminal.integrated.env.osx": {
+        "LANG": "en_US.UTF-8"
+    },
+
     "files.associations": {
         "array": "cpp",
         "string": "cpp",
