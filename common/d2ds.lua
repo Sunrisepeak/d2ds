@@ -25,7 +25,10 @@ end
 
 function sync_repo()
     cmd = string.format("git pull %s main --rebase", d2ds_repo)
+    print("start sync mian-repo...")
     os.exec(cmd)
+    print("start update submodule...")
+    os.exec("git submodule update")
 end
 
 function main()
