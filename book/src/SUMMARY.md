@@ -13,7 +13,7 @@
 
 - [链表](1_linkedlist.md)
   - [嵌入式单链表](chapter_04_embeddedlist.md)
-  - [单链表]()
+  - [单链表](chapter_05_slist.md)
   - [嵌入式双链表]()
   - [双链表]()
   - [静态链表]()
