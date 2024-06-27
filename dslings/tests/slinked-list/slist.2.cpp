@@ -1,4 +1,4 @@
-// slinked-list.2.cpp - readonly
+// slist.2.cpp - readonly
 //
 // 描述:
 //   实现链表的拷贝语义

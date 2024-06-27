@@ -1,4 +1,4 @@
-// slinked-list.6.cpp - readonly
+// slist.6.cpp - readonly
 //
 // 描述:
 //   链表的"随机访问/下标索引访问用法模拟"

@@ -1,4 +1,4 @@
-// slinked-list.1.cpp - readonly
+// slist.1.cpp - readonly
 //
 // 描述:
 //   实现链表的数据成员的初始化, 以及资源的释放

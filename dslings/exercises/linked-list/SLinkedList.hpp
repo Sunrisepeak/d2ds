@@ -6,13 +6,55 @@
 namespace d2ds {
 // show your code
 
+template <typename T>
+struct SLinkedListNode {
+    SLinkedListNode *next;
+    T data;
+};
+
+template <typename T>
+struct SLinkedListIterator {
+    using Node = SLinkedListNode<T>;
+    SLinkedListIterator() : mNodePtr { nullptr } {}
+    SLinkedListIterator(Node *nodePtr) : mNodePtr { nodePtr } { }
+
+    T * operator->() {
+        return &(mNodePtr->data);
+    }
+
+    T & operator*() {
+        return mNodePtr->data;
+    }
+
+    bool operator==(const SLinkedListIterator &it) const {
+        return mNodePtr == it.mNodePtr;
+    }
+
+    bool operator!=(const SLinkedListIterator &it) const {
+        return mNodePtr != it.mNodePtr;
+    }
+
+    SLinkedListIterator & operator++() {
+        mNodePtr = mNodePtr->next;
+        return *this;
+    }
+
+    SLinkedListIterator operator++(int) {
+        auto old = *this;
+        mNodePtr = mNodePtr->next;
+        return old;
+    }
+
+    Node *mNodePtr;
+};
+
 template <typename T, typename Alloc = DefaultAllocator>
 class SLinkedList {
 
-    struct Node {
-        Node *next;
-        T data;
-    };
+    using Node = SLinkedListNode<T>;
+
+public:
+    using Iterator = SLinkedListIterator<T>;
 
 public:
     SLinkedList() : mSize_e { 0 }, mHead_e { &mHead_e, T()}, mTailPtr_e { &mHead_e } { 
@@ -164,6 +206,44 @@ public:
 
         if (mSize_e == 0)
             mTailPtr_e = &mHead_e; // update
+    }
+
+public:
+
+    void erase_after(Iterator pos) {
+        // assert(pos.mNodePtr->next != &mHead_e);
+        Node *nodePtr = pos.mNodePtr->next;
+        pos.mNodePtr->next = nodePtr->next;
+
+        nodePtr->data.~T();
+        Alloc::deallocate(nodePtr, sizeof(Node));
+        mSize_e--;
+
+        if (pos.mNodePtr->next == &mHead_e) {
+            mTailPtr_e = pos.mNodePtr->next;
+        }
+    }
+
+    void insert_after(Iterator pos, const T &data) {
+        auto nodePtr = static_cast<Node *>(Alloc::allocate(sizeof(Node)));
+        new (&(nodePtr->data)) T(data);
+
+        nodePtr->next = pos.mNodePtr->next;
+        pos.mNodePtr->next = nodePtr;
+        mSize_e++;
+
+        if (nodePtr->next == &mHead_e) {
+            mTailPtr_e = nodePtr;
+        }
+    }
+
+public:
+    Iterator begin() {
+        return mHead_e.next;
+    }
+
+    Iterator end() {
+        return &mHead_e;
     }
 
 private:

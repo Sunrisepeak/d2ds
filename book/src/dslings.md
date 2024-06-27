@@ -155,7 +155,7 @@ int main() {
 
     HONLY_LOGI_P("Hello D2DS!");
 
-    //D2DS_WAIT
+    D2DS_WAIT
 
     return 0;
 }

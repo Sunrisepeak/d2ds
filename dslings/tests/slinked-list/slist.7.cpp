@@ -1,4 +1,4 @@
-// slinked-list.7.cpp - readonly
+// slist.7.cpp - readonly
 //
 // 描述:
 //   实现链表的尾部增删 - push_back / _pop_back

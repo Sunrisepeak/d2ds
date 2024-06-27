@@ -1,4 +1,4 @@
-// slinked-list.0.cpp - readonly
+// slist.0.cpp - readonly
 //
 // 描述:
 //   定义SLinkedList及其数据成员

@@ -1,4 +1,4 @@
-// slinked-list.5.cpp - readonly
+// slist.5.cpp - readonly
 //
 // 描述:
 //   实现链表的常用函数 - front/back

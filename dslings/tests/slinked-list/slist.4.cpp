@@ -1,4 +1,4 @@
-// slinked-list.4.cpp - readonly
+// slist.4.cpp - readonly
 //
 // 描述:
 //   实现链表的常用函数 - size/empty

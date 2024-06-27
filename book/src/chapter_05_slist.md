@@ -13,7 +13,12 @@
   - 常用函数和数据访问
   - 数据增删
 - SLinkedList迭代器实现
-  - 内部类迭代器定义
+  - 迭代器定义
+  - 数据访问与类指针行为
+  - 迭代器的判等
+  - 向前迭代/++操作
+  - 支持范围for
+  - 迭代器版 - 插入删除操作
 - 总结
 
 ---
@@ -34,15 +39,18 @@
 
 ### 类型及数据成员定义
 
-使用两个模板参数一个作为存储的数据类型, 一个作为分配节点的内存分配器。并且在内部定义一个Node类型作为存储数据的链表节点: 它的第一个成员next表示指向下一个节点, 第二个成员data为模板的第一个参数类型, 用来存储实际的数据
+使用两个模板参数一个作为存储的数据类型, 一个作为分配节点的内存分配器。并且定义一个SLinkedListNode模板作为存储数据的链表节点: 它的第一个成员next表示指向下一个节点, 第二个成员data为模板的第一个参数类型, 用来存储实际的数据。同时在数据结构中使用using给节点起一个Node别名方便后续使用
 
 ```cpp
+template <typename T>
+struct SLinkedListNode {
+    SLinkedListNode *next;
+    T data;
+};
+
 template <typename T, typename Alloc = DefaultAllocator>
 class SLinkedList {
-    struct Node {
-        Node *next;
-        T data;
-    };
+    using Node = SLinkedListNode<T>;
 private:
     int mSize_e;
     Node mHead_e;
@@ -50,7 +58,7 @@ private:
 };
 ```
 
-类型定义好后, 就用Node类型定义一个链表的头节点, 方便对链表的管理。同时使用一个int类型的mSize_e来记录链表的长度, 避免每次都遍历链表来求解长度。最后, 为了单链表的尾插法的实现再加一个指向最后一个元素的节点指针mTailPtr_e。
+链表的数据成员中, 用Node类型定义一个链表的头节点, 方便对链表的管理。同时使用一个int类型的mSize_e来记录链表的长度, 避免每次都遍历链表来求解长度。最后, 为了单链表的尾插法的实现再加一个指向最后一个元素的节点指针mTailPtr_e。
 
 ### 数据成员的初始化
 
@@ -360,7 +368,228 @@ pop_front的实现相对于_pop_back, 减少了前置节点的查找过程。所
 
 ## SLinkedList迭代器实现
 
-xxx
+迭代器是一种访问数据的设计模式 - 它把数据的访问抽象成统一的操作/行为。如:
+
+- `*` : 取数据
+- `->` : 访问成员
+- `++` : 移动到下一个数据
+- `--` : 返回上一个数据
+
+### 迭代器类型定义
+
+在迭代器中定义一个指向目标节点的指针, 用来访问数据以及迭代到下一个数据。所以它的构造函数的输入只需要目标节点的指针即可
+
+```cpp
+template <typename T>
+struct SLinkedListIterator {
+    using Node = SLinkedListNode<T>;
+    SLinkedListIterator() : mNodePtr { nullptr } { }
+    SLinkedListIterator(Node *nodePtr) : mNodePtr { nodePtr } { }
+    Node *mNodePtr;
+};
+```
+
+同时在SLinkedList定义一个数据结构对应的具体类型(T)的迭代器别名, 方便后面的使用
+
+```cpp
+template <typename T, typename Alloc = DefaultAllocator>
+class SLinkedList {
+public:
+    using Iterator = SLinkedListIterator<T>;
+}
+```
+
+### 数据访问与类指针行为
+
+```cpp
+struct MyObj {
+    char a;
+    int b;
+    float c;
+};
+MyObj obj {'a', 1, 1.1};
+
+d2ds::SLinkedListNode<MyObj> node;
+node.data = obj;
+
+d2ds::SLinkedList<MyObj>::Iterator iterator(&node);
+d2ds_assert_eq(iterator->a, obj.a);
+d2ds_assert_eq(iterator->b, obj.b);
+d2ds_assert_eq(iterator->c, obj.c);
+
+d2ds_assert_eq(*(iterator).c, 1.1f);
+```
+
+迭代器的本质是一个类, 但它使用起来就像是所管理数据类型的指针。可以通过`->`运算符访问对应的成员数据。同时也可以通过`*`元算符号访问到对象
+
+```cpp
+template <typename T>
+struct SLinkedListIterator {
+    T * operator->() {
+        return &(mNodePtr->data);
+    }
+
+    T & operator*() {
+        return mNodePtr->data;
+    }
+};
+```
+
+实现这种类指针的行为, 只需要重载并实现`operator*`和`operator->`
+
+- `operator*` : 返回数据的引用
+- `operator->` : 返回数据的指针
+
+### 迭代器的判等
+
+```cpp
+d2ds::SLinkedListNode<int> node;
+d2ds::SLinkedList<int>::Iterator iterator1(&node);
+d2ds::SLinkedList<int>::Iterator iterator2(&node);
+d2ds::SLinkedList<int>::Iterator iterator3(nullptr);
+
+d2ds_assert(iterator1 == iterator2);
+d2ds_assert(iterator2 != iterator3);
+```
+
+对于单链表的迭代器, 不用通过判断节点中的数据是否相等, 而是通过直接判断迭代器中管理的节点地址是否相等, 这样即可以判断数据有可以判断是否属于同一个链表
+
+```cpp
+template <typename T>
+struct SLinkedListIterator {
+    bool operator==(const SLinkedListIterator &it) const {
+        return mNodePtr == it.mNodePtr;
+    }
+
+    bool operator!=(const SLinkedListIterator &it) const {
+        return mNodePtr != it.mNodePtr;
+    }
+};
+```
+
+### 向前迭代/++操作
+
+```cpp
+d2ds_assert(++iterator1 == iterator3);
+d2ds_assert(iterator2++ != iterator3);
+d2ds_assert(iterator2 == iterator3);
+```
+
+单链表只有一个next指向下一个节点, 所以对应的迭代器也只能向前迭代。所以这里只需要实现迭代器的++操作
+
+- `Self & operator++()` : 对应的是前置++
+- `Self operator++(int)` : 对应的是后置++
+
+```cpp
+template <typename T>
+struct SLinkedListIterator {
+    SLinkedListIterator & operator++() {
+        mNodePtr = mNodePtr->next;
+        return *this;
+    }
+
+    SLinkedListIterator operator++(int) {
+        auto old = *this;
+        mNodePtr = mNodePtr->next;
+        return old;
+    }
+};
+```
+
+其中前置++操作的实现, 只需要修改节点指针让其指向下一个节点, 然后返回自己。而由于后置++的特性(在下一条语句中才生效, 当前语句不变), 所以需要先保留一份旧数据, 然会更新mNodePtr指向下一个节点。最后返回旧数据, 这样就能实现 - **在下一条语句生效的性质**
+
+
+### 支持范围for
+
+```cpp
+d2ds::SLinkedList<int> intList = { 5, 4, 3, 2, 1 };
+
+auto it = intList.begin();
+
+d2ds_assert_eq(*it, 5);
+it++; d2ds_assert_eq(*it, 4);
+it++; d2ds_assert_eq(*it, 3);
+it++; d2ds_assert_eq(*it, 2);
+it++; d2ds_assert_eq(*it, 1);
+
+d2ds_assert(++it == intList.end());
+
+int tmp = 5; 
+for (auto val : intList) {
+    d2ds_assert_eq(val, tmp);
+    tmp--;
+}
+```
+
+在有了迭代器后, 就可以通过实现数据结构的begin/end来支持范围for循环
+
+```cpp
+template <typename T, typename Alloc = DefaultAllocator>
+class SLinkedList {
+public:
+    Iterator begin() {
+        return mHead_e.next;
+    }
+
+    Iterator end() {
+        return &mHead_e;
+    }
+};
+```
+
+begin返回第一个节点对应的迭代器, 由于`Iterator`的构造函数接受Node类型的指针, 所以直接返回节点的指针就可以自动匹配返回值的迭代器类型。而end迭代器是指向最后节点的下一个节点 -- 头节点。用含头节点的地址的迭代器标识结束
+
+### 迭代器版本 - 插入删除操作
+
+```cpp
+d2ds::SLinkedList<int> intList = { 5, 4, 3, 2, 1 };
+auto it = intList.begin();
+intList.erase_after(it);
+++it; d2ds_assert_eq(*it, 3);
+for (int val : intList) {
+    std::cout << " " << val;
+}
+/*
+[D2DS LOGI]: - ✅ | *it == 3 (3 == 3)
+ 5 3 2 1
+*/
+```
+
+由于单链表的节点只有next指针的限制, 只能删除当前迭代器的下一个节点。所以只能实现erase_after/insert_after。并且他们的实现步骤和push/pop操作的流程是一样的, 不一样的是前驱节点由传入的迭代器中获取的
+
+```cpp
+template <typename T, typename Alloc = DefaultAllocator>
+class SLinkedList {
+public:
+    void erase_after(Iterator pos) {
+        // assert(pos.mNodePtr->next != &mHead_e);
+        Node *nodePtr = pos.mNodePtr->next;
+        pos.mNodePtr->next = nodePtr->next;
+
+        nodePtr->data.~T();
+        Alloc::deallocate(nodePtr, sizeof(Node));
+        mSize_e--;
+
+        if (pos.mNodePtr->next == &mHead_e) {
+            mTailPtr_e = pos.mNodePtr->next;
+        }
+    }
+
+    void insert_after(Iterator pos, const T &data) {
+        auto nodePtr = static_cast<Node *>(Alloc::allocate(sizeof(Node)));
+        new (&(nodePtr->data)) T(data);
+
+        nodePtr->next = pos.mNodePtr->next;
+        pos.mNodePtr->next = nodePtr;
+        mSize_e++;
+
+        if (nodePtr->next == &mHead_e) {
+            mTailPtr_e = nodePtr;
+        }
+    }
+};
+```
 
 ## 总结
 
+本章先是介绍了链表和数组的区别, 然后又从单链表的节点定义定义开始开始一步一步实现数据初始化、拷贝/移动语义、常用的函数、以及单链表一般不直接提供的功能(pop_back/operator[]), 从实现的角度来解释为什么不提的原因。最后, 又介绍了链表数据结构对应的迭代器的实现。其中关键的是对各种运算符(`*`/`->`/...)进行重载来实现类指针的行为。从单链表的实现上看, 它自身具有一定的限制在给定一个节点只能向下寻找, 这限制了迭代器的--操作的实现。并且不能直接删除当前节点(需要前驱节点)。下一章我们将开始介绍链表中最常使用的双链表的实现, 它能很好解决单链表的一些问题。

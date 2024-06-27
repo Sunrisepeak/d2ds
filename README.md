@@ -24,6 +24,7 @@ Dive into Data Structures - 强调**动手实践**的**数据结构**学习项�
 | Array | [chapter1](https://sunrisepeak.github.io/d2ds/chapter_01_array.html) | [video1](https://www.bilibili.com/video/BV1hD421T7sU) - [video2](https://www.bilibili.com/video/BV16t421w7c2) | [dstruct::Array](https://github.com/Sunrisepeak/dstruct/blob/main/core/ds/array/Array.hpp) | [备用地址](https://zhuanlan.zhihu.com/p/693936490) |
 | Vector | [chapter2](https://sunrisepeak.github.io/d2ds/chapter_01_array.html) | [video1](https://www.bilibili.com/video/BV1K1421z7kt) - [video2](https://www.bilibili.com/video/BV1yb421B7ZG) | [dstruct::Vector](https://github.com/Sunrisepeak/dstruct/blob/main/core/ds/array/Vector.hpp) | [备用地址](https://zhuanlan.zhihu.com/p/696455403) |
 | SinglyLink | [chapter3](https://sunrisepeak.github.io/d2ds/chapter_04_embeddedlist.html) | [video1](https://www.bilibili.com/video/BV1ND421V7Wn) - [video2](https://www.bilibili.com/video/BV1ir421w71C) | [dstruct::SinglyLink](https://github.com/Sunrisepeak/dstruct/blob/main/core/ds/linked-list/EmbeddedList.hpp#L15) | [备用地址](https://zhuanlan.zhihu.com/p/699299313) |
+| X | [chapterX]() | [video1]() - [video2]() | [dstruct::X]() | [备用地址]() |
 
 ## d2ds-dslings | 练习
 

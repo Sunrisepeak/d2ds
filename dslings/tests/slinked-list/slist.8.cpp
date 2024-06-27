@@ -1,4 +1,4 @@
-// slinked-list.8.cpp - readonly
+// slist.8.cpp - readonly
 //
 // 描述:
 //   实现链表的前置增删 - push_front / pop_front

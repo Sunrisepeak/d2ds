@@ -1,4 +1,4 @@
-// slinked-list.3.cpp - readonly
+// slist.3.cpp - readonly
 //
 // 描述:
 //   实现链表的移动语义
