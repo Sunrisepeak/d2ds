@@ -6,6 +6,7 @@
 #include <random>
 #include <cassert>
 #include <thread>
+#include <initializer_list>
 
 #include <dstruct.hpp>
 

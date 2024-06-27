@@ -133,3 +133,63 @@ target("5.embedded-slist-3")
 target("5.embedded-slist-4")
     set_kind("binary")
     add_files("tests/embedded-list/embedded-slist.4.cpp")
+
+target("6.slinked-list-0")
+    set_kind("binary")
+    add_files("tests/slinked-list/slist.0.cpp")
+
+target("6.slinked-list-1")
+    set_kind("binary")
+    add_files("tests/slinked-list/slist.1.cpp")
+
+target("6.slinked-list-2")
+    set_kind("binary")
+    add_files("tests/slinked-list/slist.2.cpp")
+
+target("6.slinked-list-3")
+    set_kind("binary")
+    add_files("tests/slinked-list/slist.3.cpp")
+
+target("6.slinked-list-4")
+    set_kind("binary")
+    add_files("tests/slinked-list/slist.4.cpp")
+
+target("6.slinked-list-5")
+    set_kind("binary")
+    add_files("tests/slinked-list/slist.5.cpp")
+
+target("6.slinked-list-6")
+    set_kind("binary")
+    add_files("tests/slinked-list/slist.6.cpp")
+
+target("6.slinked-list-7")
+    set_kind("binary")
+    add_files("tests/slinked-list/slist.7.cpp")
+
+target("6.slinked-list-8")
+    set_kind("binary")
+    add_files("tests/slinked-list/slist.8.cpp")
+
+target("7.slinked-list-iterator-0")
+    set_kind("binary")
+    add_files("tests/slinked-list/slist.it.0.cpp")
+
+target("7.slinked-list-iterator-1")
+    set_kind("binary")
+    add_files("tests/slinked-list/slist.it.1.cpp")
+
+target("7.slinked-list-iterator-2")
+    set_kind("binary")
+    add_files("tests/slinked-list/slist.it.2.cpp")
+
+target("7.slinked-list-iterator-3")
+    set_kind("binary")
+    add_files("tests/slinked-list/slist.it.3.cpp")
+
+target("7.slinked-list-iterator-4")
+    set_kind("binary")
+    add_files("tests/slinked-list/slist.it.4.cpp")
+
+target("7.slinked-list-iterator-5")
+    set_kind("binary")
+    add_files("tests/slinked-list/slist.it.5.cpp")

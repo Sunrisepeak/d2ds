@@ -39,6 +39,20 @@ target_to_code_file = {
     ["5.embedded-slist-2"]      = "dslings/exercises/linked-list/EmbeddedList.hpp",
     ["5.embedded-slist-3"]      = "dslings/exercises/linked-list/EmbeddedList.hpp",
     ["5.embedded-slist-4"]      = "dslings/exercises/linked-list/EmbeddedList.hpp",
+    ["6.slinked-list-0"]      = "dslings/exercises/linked-list/SLinkedList.hpp",
+    ["6.slinked-list-1"]      = "dslings/exercises/linked-list/SLinkedList.hpp",
+    ["6.slinked-list-2"]      = "dslings/exercises/linked-list/SLinkedList.hpp",
+    ["6.slinked-list-3"]      = "dslings/exercises/linked-list/SLinkedList.hpp",
+    ["6.slinked-list-4"]      = "dslings/exercises/linked-list/SLinkedList.hpp",
+    ["6.slinked-list-5"]      = "dslings/exercises/linked-list/SLinkedList.hpp",
+    ["6.slinked-list-6"]      = "dslings/exercises/linked-list/SLinkedList.hpp",
+    ["6.slinked-list-7"]      = "dslings/exercises/linked-list/SLinkedList.hpp",
+    ["7.slinked-list-iterator-0"]      = "dslings/exercises/linked-list/SLinkedList.hpp",
+    ["7.slinked-list-iterator-1"]      = "dslings/exercises/linked-list/SLinkedList.hpp",
+    ["7.slinked-list-iterator-2"]      = "dslings/exercises/linked-list/SLinkedList.hpp",
+    ["7.slinked-list-iterator-3"]      = "dslings/exercises/linked-list/SLinkedList.hpp",
+    ["7.slinked-list-iterator-4"]      = "dslings/exercises/linked-list/SLinkedList.hpp",
+    ["7.slinked-list-iterator-5"]      = "dslings/exercises/linked-list/SLinkedList.hpp",
 }
 
 function clear_screen()
