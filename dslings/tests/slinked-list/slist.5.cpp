@@ -1,10 +1,10 @@
-// embedded-slist.0.cpp - readonly
+// slinked-list.5.cpp - readonly
 //
 // 描述:
-//   定义嵌入式单链表节点
+//   实现链表的常用函数 - front/back
 //
 // 目标/要求:
-//  - 不修改该代码检测文件
+//  - 实现 front/back 访问第一个元素和最后一个元素
 //  - 在exercises/linked-list/SLinkedList.hpp中完成你的代码设计
 //  - 通过所有编译器检测 和 断言
 //
@@ -15,10 +15,10 @@
 
 int main() {
 
-    d2ds::SLinkedList<int> intList;
-    d2ds::SLinkedList<double, d2ds::DefaultAllocator> doubleList;
+    d2ds::SLinkedList<int> intList = { 1, 2, 3 };
 
-    d2ds_assert(sizeof(intList) > 16);
+    d2ds_assert_eq(intList.front(), 1);
+    d2ds_assert_eq(intList.back(), 3);
 
     D2DS_WAIT
 

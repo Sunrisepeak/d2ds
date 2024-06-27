@@ -134,6 +134,6 @@ target("5.embedded-slist-4")
     set_kind("binary")
     add_files("tests/embedded-list/embedded-slist.4.cpp")
 
-target("6.slinked-list-0")
+target("6.slinked-list-x")
     set_kind("binary")
-    add_files("tests/linked-list/slinked-list.0.cpp")
+    add_files("tests/slinked-list/slist.x.cpp")
