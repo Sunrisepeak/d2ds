@@ -20,6 +20,7 @@ int main() {
     {
         d2ds::SLinkedList<int> intList1;
         d2ds::SLinkedList<int> intList3 = { 1, 2, 3 };
+        d2ds_assert_eq(d2ds::DefaultAllocator::allocate_counter(),3);
     }
 
     d2ds_assert_eq(
