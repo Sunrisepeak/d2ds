@@ -4,7 +4,7 @@
 //   定义SLinkedList及其数据成员
 //
 // 目标/要求:
-//  - 定义SLinkedList及内部的链表节点Node及其数据成员
+//  - 定义SLinkedList及对应的链表节点Node
 //  - 在exercises/linked-list/SLinkedList.hpp中完成你的代码设计
 //  - 通过所有编译器检测 和 断言
 //
