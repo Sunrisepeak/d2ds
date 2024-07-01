@@ -1,11 +1,20 @@
 @echo off
 
+REM set ansi color
+set "ESC="
+for /F "delims=" %%i in ('echo prompt $E ^& for %%E in (1) do rem') do set "ESC=%%i"
 set "RED=%ESC%[31m"
 set "GREEN=%ESC%[32m"
 set "YELLOW=%ESC%[33m"
 set "PURPLE=%ESC%[35m"
 set "CYAN=%ESC%[36m"
 set "RESET=%ESC%[0m"
+
+REM checker ansi color support
+for /F "delims=" %%i in ('ver') do set version=%%i
+if "%version:~22,2%" GEQ "10" (
+    >nul 2>&1 reg add HKCU\Console /v VirtualTerminalLevel /t REG_DWORD /d 1 /f
+)
 
 echo %GREEN%[d2ds]: start detect environment and try to auto config...%RESET%
 
@@ -14,7 +23,6 @@ where xmake >nul 2>&1
 
 IF %ERRORLEVEL% EQU 0 (
     echo %PURPLE%[d2ds]: xmake installed%RESET%
-    ::  GOTO END
 ) else (
     REM xmake is not installed, downloading and running install script using PowerShell
     echo %PURPLE%[d2ds]: start install xmake...%RESET%
