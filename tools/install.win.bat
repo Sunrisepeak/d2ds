@@ -32,7 +32,8 @@ if %ERRORLEVEL% equ 0 (
 
 REM Colored echo
 echo [d2ds]: auto config done.
-echo \tDive into Data Structures pre-v0.0.1 - open-sources
+echo.
+echo     Dive into Data Structures pre-v0.0.1 - open-sources
 echo.
 echo - main-repo: https://github.com/Sunrisepeak/d2ds
 echo - ebook: https://sunrisepeak.github.io/d2ds

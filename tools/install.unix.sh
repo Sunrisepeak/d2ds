@@ -28,13 +28,14 @@ else
 fi
 
 echo -e "${PURPLE}[d2ds]: auto config done.${RESET}"
-
-echo -e "${YELLOW}\tDive into Data Structures pre-v0.0.1 - open-sources${RESET}\n"
+echo -e ""
+echo -e "${YELLOW}\tDive into Data Structures pre-v0.0.1 - open-sources${RESET}"
+echo -e ""
 echo -e "${CYAN} - main-repo: https://github.com/Sunrisepeak/d2ds${RESET}"
 echo -e "${CYAN} - ebook: https://sunrisepeak.github.io/d2ds${RESET}"
 echo -e "${CYAN} - courses: https://sunrisepeak.github.io/d2ds-courses${RESET}"
 echo -e "${CYAN} - dstruct: https://github.com/Sunrisepeak/dstruct${RESET}"
 echo -e "${CYAN} - issues: https://github.com/Sunrisepeak/d2ds/issues${RESET}"
-
-echo -e "\n[d2ds]: Try running ${RED}xmake dslings${RESET} to start your d2ds coding..."
+echo -e ""
+echo -e "[d2ds]: Try running ${RED}xmake dslings${RESET} to start your d2ds coding..."
 echo -e "[d2ds]: run ${RED}xmake d2ds${RESET} get more info"
