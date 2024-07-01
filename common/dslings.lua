@@ -47,6 +47,7 @@ target_to_code_file = {
     ["6.slinked-list-5"]      = "dslings/exercises/linked-list/SLinkedList.hpp",
     ["6.slinked-list-6"]      = "dslings/exercises/linked-list/SLinkedList.hpp",
     ["6.slinked-list-7"]      = "dslings/exercises/linked-list/SLinkedList.hpp",
+    ["6.slinked-list-8"]      = "dslings/exercises/linked-list/SLinkedList.hpp",
     ["7.slinked-list-iterator-0"]      = "dslings/exercises/linked-list/SLinkedList.hpp",
     ["7.slinked-list-iterator-1"]      = "dslings/exercises/linked-list/SLinkedList.hpp",
     ["7.slinked-list-iterator-2"]      = "dslings/exercises/linked-list/SLinkedList.hpp",
@@ -169,7 +170,7 @@ function main()
                         if build_success then
                             try {
                                 function () 
-                                    output, _ = os.iorunv("xmake", {"r", name})
+                                    output, _ = os.iorunv("xmake", {"r", name}, {timeout = 2000})
                                 end,
                                 catch
                                 {
