@@ -1,10 +1,20 @@
 {
 
     "C_Cpp.default.includePath": [
+        // local include path
         "${default}",
         "${workspaceFolder}",
         "${workspaceFolder}/dstruct",
         "${workspaceFolder}/dslings",
+        // Linux - gcc -v -E -x c++ -
+        //  - ubuntu22.04 - gcc11 - system include path
+        "/usr/include/c++/11",
+        "/usr/include/x86_64-linux-gnu/c++/11",
+        "/usr/include/c++/11/backward",
+        "/usr/lib/gcc/x86_64-linux-gnu/11/include",
+        "/usr/local/include",
+        "/usr/include/x86_64-linux-gnu",
+        "/usr/include",
     ],
 
     "C_Cpp.files.exclude": {
