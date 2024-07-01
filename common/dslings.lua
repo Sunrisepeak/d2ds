@@ -100,6 +100,50 @@ function print_info(target_name, built_targets, total_targets, current_file_path
     print("\nHomepage: https://github.com/Sunrisepeak/d2ds-courses")
 end
 
+function build_with_error_handling(target)
+    local output, err
+    local build_success = true
+
+    try
+    {
+        function()
+            os.iorunv("xmake", {"build", target})
+            --os.iorunv("xmake", {"build", "-v", name})
+        end,
+        catch
+        {
+            -- After an exception occurs, it is executed
+            function (e)
+                output = e
+                build_success = false
+            end
+        }
+    }
+
+    return output, build_success
+end
+
+-- TODO: optimze capture stdout + stderr
+function run_with_error_handling(target)
+    local output, err
+    local run_success = true
+
+    try {
+        function ()
+            output, err = os.iorunv("xmake", {"r", target}, {timeout = 2000})
+        end,
+        catch
+        {
+            function (e)
+                output = e
+                run_success = false
+            end
+        }
+    }
+
+    return output, run_success
+end
+
 -- main start
 function main()
     local checker_pass = false
@@ -151,35 +195,11 @@ function main()
                     if file_modify_time ~= curr_file_mtime then
                         --build_success = task.run("build", {target = name})
                         build_success = true
-                        try
-                        {
-                            function()
-                                os.iorunv("xmake", {"build", name})
-                                --os.iorunv("xmake", {"build", "-v", name})
-                            end,
-                            catch
-                            {
-                                -- After an exception occurs, it is executed
-                                function (e)
-                                    output = e
-                                    build_success = false
-                                end
-                            }
-                        }
+
+                        output, build_success = build_with_error_handling(name)
 
                         if build_success then
-                            try {
-                                function () 
-                                    output, _ = os.iorunv("xmake", {"r", name}, {timeout = 2000})
-                                end,
-                                catch
-                                {
-                                    function (e)
-                                        output = e
-                                        build_success = false
-                                    end
-                                }
-                            }
+                            output, build_success = run_with_error_handling(name)
                         end
 
                         local status = build_success
