@@ -135,7 +135,7 @@ function run_with_error_handling(target)
         catch
         {
             function (e)
-                output = e
+                output = e.stdout .. e.stderr -- .. e.errors
                 run_success = false
             end
         }
