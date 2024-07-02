@@ -98,8 +98,8 @@ xmake dslings
 - **论坛:** [github-discussions](https://github.com/Sunrisepeak/d2ds-courses/discussions)
 - **问题交流&反馈:** [github-issues](https://github.com/Sunrisepeak/d2ds-courses/issues)
 
-## 贡献方式 | 贡献
+## 参与项目 | 社区贡献
 
 - **参与社区交流:** 反馈问题、参与社区问题讨论
-- **参与项目开发:** 修复Bug、开发&优化新功能/模块
+- **参与项目开发:** 通过[开发看板](https://github.com/users/Sunrisepeak/projects/10), 参与社区中问题处理、修复Bug、开发&优化新功能/模块
 - **参与项目的宣传和推广:** 让更多的人能参与到项目的学习和建设当中, 以至于帮助到更多同学
