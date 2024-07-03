@@ -15,15 +15,13 @@
 
 #include "exercises/dslings.hpp"
 
-void crash_trigger() {
-    crash_trigger();
-}
-
 int main() {
 
-    HONLY_LOGI_P("Hello D2DS!");
+    d2ds::MaxValue mVal(2);
 
-    crash_trigger();
+    d2ds_assert_eq(mVal.get(), 2);
+
+    HONLY_LOGI_P("Hello D2DS!");
 
     D2DS_WAIT
 
