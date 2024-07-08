@@ -25,6 +25,7 @@ Dive into Data Structures - 强调**动手实践**的**数据结构**学习项�
 | Vector | [chapter2](https://sunrisepeak.github.io/d2ds/chapter_01_array.html) | [video1](https://www.bilibili.com/video/BV1K1421z7kt) - [video2](https://www.bilibili.com/video/BV1yb421B7ZG) | [dstruct::Vector](https://github.com/Sunrisepeak/dstruct/blob/main/core/ds/array/Vector.hpp) | [备用地址](https://zhuanlan.zhihu.com/p/696455403) |
 | SinglyLink | [chapter3](https://sunrisepeak.github.io/d2ds/chapter_04_embeddedlist.html) | [video1](https://www.bilibili.com/video/BV1ND421V7Wn) - [video2](https://www.bilibili.com/video/BV1ir421w71C) | [dstruct::SinglyLink](https://github.com/Sunrisepeak/dstruct/blob/main/core/ds/linked-list/EmbeddedList.hpp#L15) | [备用地址](https://zhuanlan.zhihu.com/p/699299313) |
 | SLinkedList | [chapter5](https://sunrisepeak.github.io/d2ds) | [video1](https://www.bilibili.com/video/BV1uf421Q7jG) - [video2](https://www.bilibili.com/video/BV1H1421r7QD) | [dstruct::SList](https://github.com/Sunrisepeak/dstruct/blob/main/core/ds/linked-list/SinglyLinkedList.hpp) | [备用地址](https://zhuanlan.zhihu.com/p/706196372) |
+| | | [video3](https://www.bilibili.com/video/BV1zW421R75C) - [video4](https://www.bilibili.com/video/BV1WM4m1m7wj) |  |  |
 | X | [chapterX]() | [video1]() - [video2]() | [dstruct::X]() | [备用地址]() |
 
 ## d2ds-dslings | 练习
@@ -65,32 +66,15 @@ xmake dslings
 
 ## 社区 | 交流
 
-### ShowYourCode-2024
+### 知识库
 
-> 代码分享、交流、解读
+> - #32
 
-| id | 练习代码 | 视频解读 | 文章解读 | 交流 |
-| --- | --- | --- | --- | --- |
-| [Sunrisepeak](https://github.com/Sunrisepeak) | [d2ds-sunrisepeak](https://github.com/UnknownBugs/d2ds-sunrisepeak) |  |  | [discussion-pages](https://github.com/Sunrisepeak/d2ds/discussions/19) |
-
-**创建讨论页**
-
-在[d2ds论坛](https://github.com/Sunrisepeak/d2ds/discussions)创建一个你的ShowYourCode讨论/交流页主版(用于后续表格中) - 格式见[ShowYourCode-2024 | Sunrisepeak 交流讨论页](https://github.com/Sunrisepeak/d2ds/discussions/19)
-
-**向本仓库发起PR**
-
-填写自己的相关链接到上述表格中, 并向本仓库发起PR
-
-**表格介绍**
-
-- **练习代码:** 包含自己练习代码实现的d2ds的fork仓库
-- **视频解读:** 对自己的代码实现的解读、做练习的过程等其他d2ds相关的代码分析
-- **文章解读:** 相关的代码分析的文章(如上视频解读)
-
-> 注:
-> 
-> - 关于链接: 视频/文章解读, 最好是视频合集/专栏的链接, 或者是一个目录页链接
-> - 费曼学习法: 学习练习之后, 尝试把自己学到的内容进行分享给他人, 在尽力让其他人听懂的过程中, 促使自己更加深入的理解
+- 一个d2ds相关技术点解析的知识库
+- 统一的汇总页, 便于查找
+- 降低d2ds的上手难度, 和帮助使用者理解
+- 技术/环境搭建及项目常见问题汇总
+- ShowYourCode-2024
 
 ### 交流渠道
 
@@ -102,4 +86,4 @@ xmake dslings
 
 - **参与社区交流:** 反馈问题、参与社区问题讨论
 - **参与项目开发:** 通过[开发看板](https://github.com/users/Sunrisepeak/projects/10), 参与社区中问题处理、修复Bug、开发&优化新功能/模块
-- **参与项目的宣传和推广:** 让更多的人能参与到项目的学习和建设当中, 以至于帮助到更多同学
+- **参与知识库的建设:** 对d2ds中的一些内容做技术解读, 丰富知识库, 以至于帮助到更多同学
