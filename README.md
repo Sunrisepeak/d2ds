@@ -68,7 +68,7 @@ xmake dslings
 
 ### 知识库
 
-> - #32
+> https://github.com/Sunrisepeak/d2ds/issues/32
 
 - 一个d2ds相关技术点解析的知识库
 - 统一的汇总页, 便于查找
