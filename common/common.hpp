@@ -40,17 +40,29 @@
 
 #define D2DS_SELF_ASSIGNMENT_CHECKER if (this == &dsObj) return *this;
 
+#define SHOW_YOUR_CODE(code_block) code_block
+#define DONT_CHANGE(code) code;
+
 namespace d2ds {
 
 struct DefaultAllocator {
 
+    static void * malloc(int bytes) {
+        return allocate(bytes);
+    }
+
+    static void free(void *addr) {
+        deallocate(addr, 0);
+    }
+
+public:
     using Address = unsigned long long;
 
     static void * allocate(int bytes) {
         allocate_counter()++;
         if (debug())
             HONLY_LOGI("DefaultAllocator: try to allocate %d bytes", bytes);
-        void *memPtr = malloc(bytes);
+        void *memPtr = ::malloc(bytes);
         memory_addr_flag_d()[(Address)memPtr] = true;
         return memPtr;
     }
@@ -65,7 +77,7 @@ struct DefaultAllocator {
             HONLY_LOGE("double free - %p", addr);
         } else {
             memory_addr_flag_d()[(Address)addr] = false;
-            free(addr);
+            ::free(addr);
         }
     }
 

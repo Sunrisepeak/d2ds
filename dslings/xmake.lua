@@ -194,6 +194,22 @@ target("7.slinked-list-iterator-5")
     set_kind("binary")
     add_files("tests/slinked-list/slist.it.5.cpp")
 
-target("8.embedded-dlist-x")
+target("8.embedded-dlist-0")
     set_kind("binary")
-    add_files("tests/embedded-list/embedded-dlist.x.cpp")
+    add_files("tests/embedded-list/embedded-dlist.0.cpp")
+
+target("8.embedded-dlist-1")
+    set_kind("binary")
+    add_files("tests/embedded-list/embedded-dlist.1.cpp")
+
+target("8.embedded-dlist-2")
+    set_kind("binary")
+    add_files("tests/embedded-list/embedded-dlist.2.cpp")
+
+target("8.embedded-dlist-3")
+    set_kind("binary")
+    add_files("tests/embedded-list/embedded-dlist.3.cpp")
+
+target("8.embedded-dlist-4")
+    set_kind("binary")
+    add_files("tests/embedded-list/embedded-dlist.4.cpp")
