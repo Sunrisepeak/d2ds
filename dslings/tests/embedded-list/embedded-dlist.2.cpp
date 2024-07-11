@@ -43,9 +43,9 @@ int main() {
     }
 
     SHOW_YOUR_CODE({ // reverse traverse
-        for (auto linkPtr = head.prev; linkPtr != &head; linkPtr = linkPtr->prev) {
-            MyData *dataPtr = reinterpret_cast<MyData *>(linkPtr + 1);
-            
+        for (auto linkPtr = ?; linkPtr != &head; ) {
+            MyData *dataPtr = ?;
+
             DONT_CHANGE(
                 auto myData = dataStack.top();
                 d2ds_assert_eq(dataPtr->id, myData.id);
@@ -60,9 +60,7 @@ int main() {
     SHOW_YOUR_CODE({ // use DefaultAllocator::free(addr) to release
         d2ds::DoublyLink *target = head.next;
         while (target != &head) {
-            d2ds::DoublyLink::del(&head, target);
             DefaultAllocator::free(target);
-            target = head.next;
         }
     })
 
