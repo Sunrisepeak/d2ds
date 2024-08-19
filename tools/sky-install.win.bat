@@ -49,7 +49,7 @@ IF %ERRORLEVEL% EQU 0 (
      echo %_FBGREEN%[d2ds]: xmake installed
 ) else (
     REM xmake is not installed, downloading and running install script using PowerShell
-    echo %_FBMAG%[d2ds]: start install xmake...
+    echo %_FBMAG%[d2ds]: start install xmake...%_RESET%
     powershell -Command "Invoke-Expression ((Invoke-WebRequest 'https://xmake.io/psget.text' -UseBasicParsing).Content)"
 )
 
@@ -58,7 +58,7 @@ code --list-extensions | findstr /I /C:"ms-vscode.cpptools" >nul
 if %ERRORLEVEL% equ 0 (
     echo %_FBGREEN%[d2ds]: vscode c++ extension installed
 ) else (
-    echo %_FBMAG%[d2ds]: start install vscode c++ extension...
+    echo %_FBMAG%[d2ds]: start install vscode c++ extension...%_RESET%
     call code --install-extension ms-vscode.cpptools
 )
 
@@ -76,6 +76,3 @@ echo - issues: https://github.com/Sunrisepeak/d2ds/issues
 Echo %_RESET%
 echo [d2ds]: Try running %_FRED%xmake dslings%_RESET% to start your d2ds coding...
 echo [d2ds]: run %_FRED%xmake d2ds%_RESET% get more info
-
-
-
