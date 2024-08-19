@@ -76,3 +76,5 @@ echo - issues: https://github.com/Sunrisepeak/d2ds/issues
 Echo %_RESET%
 echo [d2ds]: Try running %_FRED%xmake dslings%_RESET% to start your d2ds coding...
 echo [d2ds]: run %_FRED%xmake d2ds%_RESET% get more info
+
+:END
