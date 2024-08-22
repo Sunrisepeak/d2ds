@@ -46,7 +46,7 @@ REM Check if xmake is installed
 where xmake >nul 2>&1
 
 IF %ERRORLEVEL% EQU 0 (
-     echo %_FBGREEN%[d2ds]: xmake installed
+    echo %_FBGREEN%[d2ds]: xmake installed
 ) else (
     REM xmake is not installed, downloading and running install script using PowerShell
     echo %_FBMAG%[d2ds]: start install xmake...%_RESET%
