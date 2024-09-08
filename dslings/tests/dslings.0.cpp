@@ -23,7 +23,7 @@ int main() {
 
     HONLY_LOGI_P("Hello D2DS!");
 
-    //XLINGS_WAIT
+    XLINGS_WAIT
 
     return 0;
 }

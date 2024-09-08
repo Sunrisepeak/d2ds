@@ -1,2 +1,3 @@
 xlings_name = "dslings"
 xlings_lang = "cpp"
+xlings_editor = "vscode"
