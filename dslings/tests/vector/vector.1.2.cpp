@@ -37,7 +37,7 @@ int main() {
     d2ds_assert(BigFiveTest::self_assignment());
     d2ds_assert(BigFiveTest::destructor(true));
 
-    D2DS_WAIT
+    XLINGS_WAIT
 
     return 0;
 }

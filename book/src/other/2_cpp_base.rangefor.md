@@ -192,7 +192,7 @@ int main() {
         }
     }
 
-    D2DS_WAIT
+    XLINGS_WAIT
 
     return 0;
 }
@@ -244,7 +244,7 @@ Output:
 [D2DS LOGI]: - ✅ | val == index (35 == 35)
 [D2DS LOGI]: - ✅ | val == index (40 == 40)
 [D2DS LOGI]: - ✅ | val == index (45 == 45)
-[D2DS LOGW]:    main: tests/other/cpp-base/range_for.3.cpp:35 - Delete the D2DS_WAIT to continue...
+[D2DS LOGW]:    main: tests/other/cpp-base/range_for.3.cpp:35 - Delete the XLINGS_WAIT to continue...
 
 ====================
 

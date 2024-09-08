@@ -1,5 +1,5 @@
 [submodule "dstruct"]
-	path = dstruct
+	path = dslings/dstruct
 	url = https://github.com/Sunrisepeak/DStruct
 
 [submodule "courses"]

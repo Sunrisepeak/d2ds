@@ -28,7 +28,7 @@ int main() {
         d2ds::DefaultAllocator::deallocate_counter()
     );
 
-    D2DS_WAIT
+    XLINGS_WAIT
 
     return 0;
 }

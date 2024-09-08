@@ -32,7 +32,7 @@ int main() {
         d2ds_assert_eq(d2ds::max(a, b), dstruct::max(a, b));
     }
 
-    D2DS_WAIT
+    XLINGS_WAIT
 
     return 0;
 }

@@ -34,7 +34,7 @@ int main() {
 
     d2ds_assert_eq(cnt, 10);
 
-    D2DS_WAIT
+    XLINGS_WAIT
 
     return 0;
 }

@@ -17,7 +17,7 @@ int main() {
     d2ds::Array<int, 5> intArr;
     d2ds::Array<double, 10> doubleArr;
 
-    D2DS_WAIT
+    XLINGS_WAIT
 
     return 0;
 }

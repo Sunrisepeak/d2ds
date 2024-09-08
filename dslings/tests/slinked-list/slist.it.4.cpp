@@ -33,7 +33,7 @@ int main() {
         tmp--;
     }
 
-    D2DS_WAIT
+    XLINGS_WAIT
 
     return 0;
 }

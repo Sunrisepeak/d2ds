@@ -26,7 +26,7 @@ int main() {
     d2ds_assert_eq(sizeof(iterator1), 8);
     d2ds_assert_eq(sizeof(iterator2), 8);
 
-    D2DS_WAIT
+    XLINGS_WAIT
 
     return 0;
 }

@@ -35,7 +35,7 @@ int main() {
     //d2ds_assert_eq(2.2, node.data.c); // defaul 2.2 is double
     d2ds_assert_eq(2.2f, node.data.c);
 
-    D2DS_WAIT
+    XLINGS_WAIT
 
     return 0;
 }

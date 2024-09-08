@@ -23,7 +23,7 @@ int main() {
     d2ds_assert(iterator1 == iterator2);
     d2ds_assert(iterator2 != iterator3);
 
-    D2DS_WAIT
+    XLINGS_WAIT
 
     return 0;
 }

@@ -84,7 +84,7 @@ Output:
 [D2DS LOGI]: - ✅ | d2ds::max(a, b) == dstruct::max(a, b) (1 == 1)
 [D2DS LOGI]: - ✅ | d2ds::max(a, b) == dstruct::max(a, b) (4294967295 == 4294967295)
 [D2DS LOGI]: - ✅ | d2ds::max(a, b) == dstruct::max(a, b) (3.100000 == 3.100000)
-[D2DS LOGW]:    main: tests/other/cpp-base/template.0.cpp:35 - Delete the D2DS_WAIT to continue...
+[D2DS LOGW]:    main: tests/other/cpp-base/template.0.cpp:35 - Delete the XLINGS_WAIT to continue...
 
 ====================
 
@@ -191,7 +191,7 @@ int main() {
         d2ds_assert(box.get_value() == dstruct::String("Hello, d2ds!"));
     }
 
-    D2DS_WAIT
+    XLINGS_WAIT
 
     return 0;
 }
@@ -212,7 +212,7 @@ Output:
 ====================
 [D2DS LOGI]: - ✅ | box.get_value() == 2 (2 == 2)
 [D2DS LOGI]: - ✅ | box.get_value() == dstruct::String("Hello, d2ds!")
-[D2DS LOGW]:    main: tests/other/cpp-base/template.2.cpp:33 - Delete the D2DS_WAIT to continue...
+[D2DS LOGW]:    main: tests/other/cpp-base/template.2.cpp:33 - Delete the XLINGS_WAIT to continue...
 
 ====================
 

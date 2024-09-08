@@ -33,7 +33,7 @@ int main() {
 
     d2ds_assert_eq(d2ds::DefaultAllocator::deallocate_counter(), 9);
 
-    D2DS_WAIT
+    XLINGS_WAIT
 
     return 0;
 }

@@ -40,7 +40,7 @@ int main() {
         }
     }
 
-    D2DS_WAIT
+    XLINGS_WAIT
 
     return 0;
 }

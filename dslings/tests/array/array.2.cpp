@@ -51,7 +51,7 @@ int main() {
     d2ds_assert(BigFiveTest::destructor());
     //BigFiveTest::print_status();
 
-    D2DS_WAIT
+    XLINGS_WAIT
 
     return 0;
 }
