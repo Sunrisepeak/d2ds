@@ -6,6 +6,8 @@ Dive into Data Structures - 强调**动手实践**的**数据结构**学习项�
 | ------------------------------------------------------------ |
 | [d2ds-book](https://sunrisepeak.github.io/d2ds) - [d2ds-courses](https://sunrisepeak.github.io/d2ds-courses) - [d2ds-dslings](dslings) - [dstruct](https://github.com/Sunrisepeak/dstruct) |
 
+**项目已经使用xlings重构 - 文档待更新**
+
 ---
 
 ## 目标
