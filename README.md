@@ -32,38 +32,29 @@ Dive into Data Structures - 强调**动手实践**的**数据结构**学习项�
 
 ## d2ds-dslings | 练习
 
-通过使用dslings自动化检测的**编译器驱动开发模式**来进行代码练习
+通过使用[xlings](https://github.com/d2learn/xlings)下载项目并运行自动化检测的**编译器驱动开发模式**来进行代码练习
 
-[环境配置&使用指南](book/src/dslings.md)
+> 注: [xlings安装文档](https://github.com/d2learn/xlings)
 
-```bash
-git clone --recursive git@github.com:Sunrisepeak/d2ds.git
-```
-
-### 配置环境
-
-**linux/macos**
-
-> 使用bash执行tools目录下的安装脚本
+### 获取练习代码
 
 ```bash
-bash tools/install.unix.sh
-```
-
-**windows**
-
-> 执行tools目录下的安装脚本 或 直接双击运行
-
-```bash
-tools\install.win.bat
+xlings drepo d2ds
 ```
 
 ### 执行dslings进入练习
 
-> 更多详情见[dslings使用指南](book/src/dslings.md)
+> 进入d2ds目录, 执行dslings开始练习
 
 ```bash
-xmake dslings
+cd d2ds
+xlings dslings
+```
+
+### 打开电子书
+
+```bash
+xlings book
 ```
 
 ## 社区 | 交流
@@ -88,4 +79,4 @@ xmake dslings
 
 - **参与社区交流:** 反馈问题、参与社区问题讨论
 - **参与项目开发:** 通过[开发看板](https://github.com/users/Sunrisepeak/projects/10), 参与社区中问题处理、修复Bug、开发&优化新功能/模块
-- **参与知识库的建设:** 对d2ds中的一些内容做技术解读, 丰富知识库, 以至于帮助到更多同学
+- **参与[知识库](https://github.com/Sunrisepeak/d2ds/issues/32)的建设:** 对d2ds中的一些内容做技术解读, 丰富知识库, 以至于帮助到更多同学
