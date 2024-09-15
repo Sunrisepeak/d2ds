@@ -1,4 +1,4 @@
-# 动手写数据结构 | d2ds - WIP
+# 动手写数据结构 | d2ds - 项目已转移到[D2Learn/d2ds](https://github.com/d2learn/d2ds)继续开发
 
 Dive into Data Structures - 强调**动手实践**的**数据结构**学习项目，其中包含**在线书籍、公开课、练习代码**等子项目
 
