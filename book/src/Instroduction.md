@@ -19,7 +19,7 @@
   - dslings自动检测
     - 错误提示
     - 代码通过提示
-    - D2DS_WAIT - dslings等待标志
+    - XLINGS_WAIT - dslings等待标志
 - 总结
 
 ---
@@ -83,7 +83,7 @@ int main() {
 
     d2ds_assert_eq(mVal.get(), maxVal);
 
-    D2DS_WAIT
+    XLINGS_WAIT
 
     return 0;
 }
@@ -106,7 +106,7 @@ Output:
 [D2DS LOGI]: - ✅ | mVal.get() == 2 (2 == 2)
 [D2DS LOGI]: - ✅ | mVal.get() == 100 (100 == 100)
 [D2DS LOGI]: - ✅ | mVal.get() == maxVal (191 == 191)
-[D2DS LOGW]:    main: tests/dslings.2.cpp:46 - Delete the D2DS_WAIT to continue...
+[D2DS LOGW]:    main: tests/dslings.2.cpp:46 - Delete the XLINGS_WAIT to continue...
 
 ====================
 
@@ -328,15 +328,15 @@ Book: https://sunrisepeak.github.io/d2ds
 
 ```
 
-**D2DS_WAIT - dslings等待标志**
+**XLINGS_WAIT - dslings等待标志**
 
 当完整完成一个小节的练习的时候, dslings检测程序会进入等待状态, 并且打印出类似如下的提示消息
 
 ```bash
-[D2DS LOGW]:    main: tests/dslings.2.cpp:46 - Delete the D2DS_WAIT to continue...
+[D2DS LOGW]:    main: tests/dslings.2.cpp:46 - Delete the XLINGS_WAIT to continue...
 ```
 
-按照消息中给出的文件地址, 选择注释掉(或删除)程序中的`D2DS_WAIT`标志, dslings就会进入下一个练习并开启自动检测
+按照消息中给出的文件地址, 选择注释掉(或删除)程序中的`XLINGS_WAIT`标志, dslings就会进入下一个练习并开启自动检测
 
 ## 总结
 

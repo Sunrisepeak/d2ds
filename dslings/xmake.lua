@@ -1,3 +1,11 @@
+add_rules("mode.debug")
+
+set_languages("cxx11")
+add_includedirs(".")
+
+-- verify lib
+add_includedirs("dstruct")
+
 target("0.dslings-0")
     set_kind("binary")
     add_files("tests/dslings.0.cpp")

@@ -26,7 +26,7 @@ int main() {
     d2ds_assert(BigFiveTest::destructor());
     d2ds_assert_eq(1,d2ds::DefaultAllocator::deallocate_counter());
 
-    D2DS_WAIT
+    XLINGS_WAIT
 
     return 0;
 }

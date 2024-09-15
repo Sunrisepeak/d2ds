@@ -1,0 +1,4 @@
+xlings_name = "dslings"
+xlings_lang = "cpp"
+xlings_editor = "vscode"
+--xlings_llm_config = ".xlings/llm.config.xlings"

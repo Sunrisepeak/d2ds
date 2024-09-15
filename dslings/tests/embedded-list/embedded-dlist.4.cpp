@@ -77,7 +77,7 @@ int main() {
 
     d2ds_assert(head.next() == &head);
 
-    D2DS_WAIT
+    XLINGS_WAIT
 
     return 0;
 }

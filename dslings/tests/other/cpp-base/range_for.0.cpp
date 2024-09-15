@@ -18,7 +18,7 @@ int main() {
     d2ds::PyRange(0, 10);
     d2ds::PyRange(0, 5, 200);
 
-    D2DS_WAIT
+    XLINGS_WAIT
 
     return 0;
 }

@@ -55,7 +55,7 @@ int main() {
         d2ds_assert_eq(intArr2.capacity(), 0);
     }
 
-    D2DS_WAIT
+    XLINGS_WAIT
 
     return 0;
 }

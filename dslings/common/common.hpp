@@ -35,8 +35,8 @@
     } \
 }
 
-#define D2DS_WAIT HONLY_LOGW("🥳 Delete the D2DS_WAIT to continue...");
-#define D2DS_RETURN HONLY_LOGW("🥳 Delete the D2DS_RETURN to continue..."); return 0;
+#define XLINGS_WAIT HONLY_LOGW("🥳 Delete the XLINGS_WAIT to continue...");
+#define D2DS_RETURN HONLY_LOGW("🥳 Delete the XLINGS_RETURN to continue..."); return 0;
 
 #define D2DS_SELF_ASSIGNMENT_CHECKER if (this == &dsObj) return *this;
 

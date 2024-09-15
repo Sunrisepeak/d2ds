@@ -111,7 +111,7 @@ int main() {
 
     HONLY_LOGI_P("Hello D2DS!");
 
-    D2DS_WAIT
+    XLINGS_WAIT
 
     return 0;
 }
@@ -134,14 +134,14 @@ Output:
 ====================
 [D2DS LOGI]: - ✅ | mVal.get() == 2 (2 == 2)
 [D2DS LOGI]: - Hello D2DS!
-[D2DS LOGW]: main: tests/dslings.0.cpp:26 - 🥳 Delete the D2DS_WAIT to continue...
+[D2DS LOGW]: main: tests/dslings.0.cpp:26 - 🥳 Delete the XLINGS_WAIT to continue...
 
 ====================
 
 Homepage: https://github.com/Sunrisepeak/d2ds-courses
 ```
 
-### 第四步: 注释D2DS_WAIT, 进入下一个练习
+### 第四步: 注释XLINGS_WAIT, 进入下一个练习
 
 根据dslings在控制台的提示信息, 找到`tests/dslings.0.cpp:26`, 并进行注释或者删除。
 dslings就会进入下一个练习并进行检测
@@ -155,7 +155,7 @@ int main() {
 
     HONLY_LOGI_P("Hello D2DS!");
 
-    D2DS_WAIT
+    XLINGS_WAIT
 
     return 0;
 }

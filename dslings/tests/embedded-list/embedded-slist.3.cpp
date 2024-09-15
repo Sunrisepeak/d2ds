@@ -44,7 +44,7 @@ int main() {
 
     d2ds_assert_eq(sum, 0 + 1 + 2 + 3 + 4);
 
-    D2DS_WAIT
+    XLINGS_WAIT
 
     return 0;
 }

@@ -25,7 +25,7 @@ int main() {
     d2ds_assert_eq(intList1.size(), 3);
     d2ds_assert(!intList1.empty());
 
-    D2DS_WAIT
+    XLINGS_WAIT
 
     return 0;
 }

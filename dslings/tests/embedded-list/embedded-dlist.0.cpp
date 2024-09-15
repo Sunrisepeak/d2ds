@@ -19,7 +19,7 @@ int main() {
     d2ds::DoublyLink::init(&dLink);
     d2ds_assert(dLink.next == dLink.prev);
 
-    D2DS_WAIT
+    XLINGS_WAIT
 
     return 0;
 }

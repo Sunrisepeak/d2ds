@@ -24,7 +24,7 @@ int main() {
     intArr[4] = intArr[0];
     d2ds_assert_eq(intArr[0], intArr[4]);
 
-    D2DS_WAIT
+    XLINGS_WAIT
 
     return 0;
 }

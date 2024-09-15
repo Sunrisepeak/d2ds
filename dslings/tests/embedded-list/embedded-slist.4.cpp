@@ -49,7 +49,7 @@ int main() {
 
     d2ds_assert_eq(sum, 1 + 3 + 5 + 7 + 9);
 
-    D2DS_WAIT
+    XLINGS_WAIT
 
     return 0;
 }
