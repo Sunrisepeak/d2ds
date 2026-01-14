@@ -72,9 +72,9 @@ public:
         if (debug())
             HONLY_LOGI("DefaultAllocator: free addr %p, bytes %d", addr, bytes);
         if (addr == nullptr) {
-            HONLY_LOGE("free null pointer");
+            HONLY_LOGE("free null pointer"); std::exit(-1);
         } else if (memory_addr_flag_d()[(Address)addr] == false) {
-            HONLY_LOGE("double free - %p", addr);
+            HONLY_LOGE("double free - %p", addr); std::exit(-1);
         } else {
             memory_addr_flag_d()[(Address)addr] = false;
             ::free(addr);

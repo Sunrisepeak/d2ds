@@ -1,4 +1,22 @@
-xlings_name = "dslings"
-xlings_lang = "cpp"
-xlings_editor = "vscode"
+xname = "d2ds"
+
+-- xim-deps
+xdeps = {
+    mdbook = "",
+    vscode = "",
+    cpp    = "",
+}
+
+d2x = {
+    checker = {
+        name = "dslings",
+        editor = "vscode",
+    },
+    private = {
+        ---------- d2ds config
+        -- 0: hard, 1: normal, 2: easy
+        d2ds_difficulty_level = 1
+    }
+}
+
 --xlings_llm_config = ".xlings/llm.config.xlings"

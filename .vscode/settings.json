@@ -23,6 +23,10 @@
         "/.xmake": true
     },
 
+
+    "files.autoSave": "afterDelay", // or "onFocusChange", "onWindowChange", "off"
+    "files.autoSaveDelay": 1000, // Only relevant for "afterDelay", in milliseconds
+
     "files.encoding": "utf8",
     "terminal.integrated.env.windows": {
         "LANG": "en_US.UTF-8"
